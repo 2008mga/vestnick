@@ -52,7 +52,7 @@ class User extends Authenticatable
     {
         $avatar = Image::make($avatar)->fit(300);
 
-        $filename = hash('sha256', $avatar->encode('data-url')) . '.png';
+        $filename = hash('sha256', $avatar->encode('data-url') . \Hash::make('laravel')) .'.png';
         $publicPath = '/images/users/' . $filename;
         $path = public_path('/images/users/' . $filename);
 
