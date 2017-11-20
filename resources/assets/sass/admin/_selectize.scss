@@ -1,0 +1,43 @@
+.selectize-control {
+
+  .selectize-input {
+    transition: $input-transition;
+    background-color: $input-bg !important;
+    border-color: $input-border-color !important;
+
+    input {
+      color: $input-color !important;
+    }
+
+    &.focus {
+      border-color: $input-border-focus !important;
+      background-color: $input-bg-focus !important;
+    }
+
+    .item {
+      background-color: darken($input-bg, 5%) !important;
+      color: $white !important;
+      padding: .20rem .35rem;
+
+      &.active {
+        background-color: lighten($input-bg, 20%) !important;
+      }
+    }
+  }
+
+  .selectize-dropdown {
+    background-color: lighten($input-bg, 30%) !important;
+    border-color: $input-border-color !important;
+    border: {
+      top: 0 !important;
+    }
+
+    .option {
+      color: darken($input-color, 10%) !important;
+      &:hover,
+      &.active {
+        background-color: lighten($input-color, 3%);
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.user-avatar {
+  &.mini {
+    height: 18px;
+
+    padding: {
+      right: 5px;
+      left: 5px;
+    }
+  }
+}

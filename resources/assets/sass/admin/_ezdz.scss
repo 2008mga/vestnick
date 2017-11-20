@@ -1,0 +1,48 @@
+.ezdz-dropzone {
+  width: 100% !important;
+  height: auto !important;
+  border: none !important;
+  min-height: 30px !important;
+
+  > div {
+    &:first-child {
+      line-height: normal !important;
+      font-size: $font-size-base !important;
+    }
+
+    > img {
+      width: 200px !important;
+      height: 200px !important;
+
+      @extend .rounded-circle;
+    }
+  }
+
+  .image-g {
+    li {
+      float: none !important;
+
+      width: 200px !important;
+      height: 200px !important;
+
+      max-width: 200px !important;
+      max-height: 200px !important;
+
+      overflow: hidden !important;
+      border-radius: 100% !important;
+
+      margin: 0 auto;
+      padding: 0 !important;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      box-shadow: 0 5px 5px -4px black;
+
+      img {
+        height: 100% !important;
+      }
+    }
+  }
+}

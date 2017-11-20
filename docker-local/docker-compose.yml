@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  nginx-local: 
+    image: nginx
+    volumes:
+      - ./../:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    environment:
+      - VIRTUAL_HOST=vestnick.gumrf.local
+    links:
+      - fpm-local
+  fpm-local:
+    build: ./php
+    links:
+      - db
+    volumes:
+      - ./../:/var/www/html
+    environment:
+      - DB_PORT=3306
+      - DB_HOST=db
+  db:
+    image: mysql
+    volumes:
+      - ./database:/var/lib/mysql
+    restart: always
+    ports:
+      - "3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=vestnick
+      - MYSQL_USER=vestnick
+      - MYSQL_PASSWORD=secret
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+

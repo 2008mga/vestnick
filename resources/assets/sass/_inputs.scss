@@ -1,0 +1,13 @@
+.input-group-inputs {
+  .form-control {
+    border-radius: 0 !important;
+
+    &:first-child {
+      border-radius: $input-border-radius $input-border-radius 0 0 !important;
+    }
+
+    &:last-of-type {
+      border-radius: 0 0 $input-border-radius $input-border-radius !important;
+    }
+  }
+}
