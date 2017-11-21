@@ -94,7 +94,10 @@ class User extends Authenticatable
 
         self::updating(function (User $user) {
             // hash password
-            $user->password = \Hash::make($user->password);
+
+            if ($user->isDirty('password')) {
+                $user->password = \Hash::make($user->password);
+            }
             return $user;
         });
 
