@@ -23,15 +23,15 @@
     TODO: add tags
 --}}
 
-{{--<div class="form-group">--}}
-    {{--<label>Теги</label>--}}
+<div class="form-group">
+    <label>Теги</label>
 
-    {{--<select class="selectized" name="tags[]" multiple>--}}
-        {{--<option value="1">test</option>--}}
-        {{--<option value="2">test</option>--}}
-        {{--<option value="3">test</option>--}}
-    {{--</select>--}}
-{{--</div>--}}
+    <select class="selectized" name="tags[]" multiple>
+        @foreach(\App\Tag::all() as $key => $tag)
+            <option value="{{ $tag->id }}" {{ (form_old('tags.' . $key)) ? 'selected' : ''  }}>{{ $tag->name }}</option>
+        @endforeach
+    </select>
+</div>
 
 <hr>
 

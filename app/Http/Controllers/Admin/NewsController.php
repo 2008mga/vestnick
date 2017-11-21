@@ -42,7 +42,9 @@ class NewsController extends Controller
             'tags'
         ]));
 
-        print_r($new);
+        $new->tags()->sync($request->get('tags'));
+
+        return response()->json(['status' => 'Ok!']);
     }
 
     /**
@@ -79,9 +81,15 @@ class NewsController extends Controller
      */
     public function update(Request $request, NewModel $news)
     {
-        $news->fill($request->all());
+        $news->fill($request->except('tags'));
         $news->save();
-        print_r($news->toArray());
+
+        $news->tags()->sync($request->get('tags'));
+
+        print_r($request->all());
+        print_r($news->tags);
+
+        return response()->json(['status' => 'Ok!']);
     }
 
     /**

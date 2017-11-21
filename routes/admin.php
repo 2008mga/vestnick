@@ -25,4 +25,16 @@ Route::resource('news', 'NewsController', [
     ]
 ]);
 
+Route::resource('tags', 'TagsController', [
+    'names' => [
+        'create' => 'admin.tags.create',
+        'update' => 'admin.tags.update',
+        'destroy' => 'admin.tags.destroy',
+        'index' => 'admin.tags.index',
+        'edit' => 'admin.tags.edit',
+        'store' => 'admin.tags.store',
+        'show' => 'admin.tags.show'
+    ]
+]);
+
 Route::post('upload/image', 'UploaderController@image');

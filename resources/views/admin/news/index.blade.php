@@ -43,7 +43,9 @@
                                         </span>
                                     </td>
                                     <td>
-
+                                        @foreach($new->tags()->get() as $tag)
+                                            <a href="{{ route('admin.tags.edit', $tag->id) }}" class="badge badge-default">{{ $tag->name }}</a>
+                                        @endforeach
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-sm btn-primary">Редактировать</a>

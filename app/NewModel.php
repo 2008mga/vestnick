@@ -31,6 +31,8 @@ class NewModel extends Model
         'private_link',
     ];
 
+    protected $with = ['tags'];
+
     protected static function boot()
     {
         self::creating(function (NewModel $new) {

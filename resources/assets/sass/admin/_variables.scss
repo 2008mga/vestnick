@@ -417,7 +417,7 @@ $input-padding-y:                .5rem !default;
 $input-line-height:              1.35 !default;
 
 $input-bg:                       lighten($blue, 5%) !default;
-$input-bg-disabled:              $gray-lighter !default;
+$input-bg-disabled:              lighten($blue, 20%) !default;
 
 $input-color:                    darken($white, 5%) !default;
 $input-border-color:             rgba($black,.15) !default;
@@ -459,7 +459,7 @@ $form-check-inline-margin-x: .75rem !default;
 
 $form-group-margin-bottom:       $spacer-y !default;
 
-$input-group-addon-bg:           $gray-lighter !default;
+$input-group-addon-bg:           darken($blue, 5%) !default;
 $input-group-addon-border-color: $input-border-color !default;
 
 $cursor-disabled:                not-allowed !default;

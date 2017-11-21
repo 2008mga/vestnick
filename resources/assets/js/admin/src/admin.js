@@ -64,7 +64,7 @@ import { summernoteUploader } from  "./summernote.utils";
     const data = {
       'short_name': $('input[name=short_name]').val(),
       'full_name': $('input[name=full_name]').val(),
-      // 'tags': getSelectValues(document.querySelector('select[name="tags[]"]')),
+      'tags': getSelectValues(document.querySelector('select[name="tags[]"]')),
       'display_author': $('input[name=display_author]').is(':checked') ? 1 : 0,
       'is_private': $('input[name=is_private]').is(':checked') ? 1 : 0,
       'text': $('#new_content').summernote('code')
@@ -90,5 +90,11 @@ import { summernoteUploader } from  "./summernote.utils";
       }, 2000)
       throw e;
     });
+  });
+
+  require('bootstrap-colorpicker');
+  // color picker
+  $('#cp5').colorpicker({
+    format: null
   });
 })();

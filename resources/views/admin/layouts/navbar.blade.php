@@ -20,6 +20,9 @@
                     <li class="nav-item {{ \Request::is('admin/news*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.news.index') }}">Новости</a>
                     </li>
+                    <li class="nav-item {{ \Request::is('admin/tags*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.tags.index') }}">Теги</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Настройки</a>
                     </li>
