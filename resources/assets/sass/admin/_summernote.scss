@@ -1,0 +1,28 @@
+.note-group-image-url {
+  display: none;
+}
+
+.note-editor {
+  border: 0 !important;
+
+  .note-toolbar {
+    padding: {
+      right: 0 !important;
+      left: 0 !important;
+    }
+
+    .note-btn {
+      background-color: lighten($blue, 10%);
+      color: $white !important;
+      cursor: pointer;
+
+      &.active {
+        background-color: lighten($blue, 20%);
+      }
+    }
+  }
+
+  .note-editable.panel-body {
+    background-color: $gray-light;
+  }
+}

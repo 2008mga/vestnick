@@ -9,18 +9,17 @@ class NewModel extends Model
     protected $table = 'news';
 
     protected $fillable = [
-        'title',
-        'html',
+        'short_name',
+        'full_name',
         'is_private',
         'display_author',
         'slug',
-        'views'
+        'views',
+        'text'
     ];
 
     protected $hidden = [
         'slug',
-        'is_private',
-        'display_author',
     ];
 
     protected $casts = [

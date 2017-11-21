@@ -46,10 +46,11 @@
 @import "~bootstrap/scss/close";
 
 // Components w/ JavaScript
-//@import "modal";
-//@import "tooltip";
-//@import "popover";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
 //@import "carousel";
 
 // Utility classes
 @import "~bootstrap/scss/utilities";
+

@@ -1,0 +1,15 @@
+.switchery {
+  background-color: darken($blue, 5%) !important;
+  border-width: 2px !important;
+
+  height: 20px !important;
+  width: 35px !important;
+
+  small {
+    width: 20px !important;
+    height: 20px !important;
+    background-color: lighten($blue, 5%) !important;
+    margin-top: -2px;
+    margin-left: -2px;
+  }
+}

@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'user_roles');
     }
 
+    public function news()
+    {
+        return $this->hasMany(NewModel::class, 'user_id');
+    }
+
     public function uploadAvatar(UploadedFile $avatar)
     {
         $avatar = Image::make($avatar)->fit(300);

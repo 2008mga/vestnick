@@ -76,7 +76,9 @@ module.exports = {
       '%': path.resolve(__dirname, '../resources/assets/sass/admin')
     }
   },
-  module: { rules },
+  module: {
+    rules
+  },
   plugins: [
     new ExtractTextPlugin({
       filename: "[name].css"

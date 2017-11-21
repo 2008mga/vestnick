@@ -20,3 +20,5 @@ Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/new/{slug?}/slug','NewsController@private')->name('new.private');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\NewStoreRequest;
+use App\NewModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.news.index');
     }
 
     /**
@@ -24,18 +26,22 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.news.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function store(Request $request)
+    public function store(NewStoreRequest $request)
     {
-        //
+        $new = \Auth::user()->news()->create($request->except([
+            'tags'
+        ]));
+
+        print_r($new);
     }
 
     /**
@@ -52,24 +58,29 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param NewModel $news
      * @return \Illuminate\Http\Response
+     * @internal param NewModel $new
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(NewModel $news)
     {
-        //
+        return view('admin.news.edit', compact('news'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param NewModel $news
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, NewModel $news)
     {
-        //
+        $news->fill($request->all());
+        $news->save();
+        print_r($news->toArray());
     }
 
     /**

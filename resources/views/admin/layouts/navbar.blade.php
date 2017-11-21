@@ -7,21 +7,21 @@
             <a class="navbar-brand" href="{{ route('admin.home') }}">
                 {{ env('APP_NAME') . ' | ' }}
                 <small>Admin panel</small>
-            </a>
+           </a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item {{ \Route::currentRouteName() === 'admin.home' ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.home') }}">Главная <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('admin.home') }}">Главная</a>
                     </li>
                     <li class="nav-item {{ \Request::is('admin/users*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.users.index') }}">Пользователи <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('admin.users.index') }}">Пользователи</a>
+                    </li>
+                    <li class="nav-item {{ \Request::is('admin/news*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.news.index') }}">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Новости <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Настройки <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Настройки</a>
                     </li>
                 </ul>
 
@@ -30,7 +30,7 @@
                         <a class="nav-link" href="">
                             <img class="user-avatar mini rounded-circle" src="{{ asset(\Auth::user()->avatar) }}" alt="">
                             {{ \Auth::user()->name }} &#8628;
-                        </a>
+                       </a>
                     </li>
                 </ul>
             </div>

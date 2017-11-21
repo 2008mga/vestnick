@@ -3,3 +3,12 @@
 @import "./selectize";
 @import "./ezdz";
 @import "./user";
+@import "./summernote";
+
+
+@import '~summernote/dist/summernote.css';
+@import '~summernote/dist/summernote-bs4.css';
+@import '~selectize/dist/css/selectize.css';
+@import '~ezdz/src/jquery.ezdz.css';
+
+@import "./switchery";

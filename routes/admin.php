@@ -24,3 +24,5 @@ Route::resource('news', 'NewsController', [
         'show' => 'admin.news.show'
     ]
 ]);
+
+Route::post('upload/image', 'UploaderController@image');
