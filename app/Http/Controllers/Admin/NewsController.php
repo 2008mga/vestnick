@@ -16,7 +16,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin.news.index');
+        $news = NewModel::all();
+        return view('admin.news.index', compact('news'));
     }
 
     /**
@@ -86,11 +87,16 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param NewModel $news
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Request $request, NewModel $news)
     {
-        //
+        $news->delete();
+
+        $request->session()->flash('success', 'Новость удалена');
+
+        return redirect()->route('admin.news.index');
     }
 }

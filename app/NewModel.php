@@ -60,4 +60,9 @@ class NewModel extends Model
     {
         return $this->hasMany(NewLike::class, 'new_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
