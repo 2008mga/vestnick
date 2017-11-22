@@ -76,14 +76,23 @@ import { summernoteUploader } from  "./summernote.utils";
     const client = isUpdate ? axios.put(url, data) : axios.post(url, data);
     const $buttonText = $target.find('button[type=submit]').find('small');
 
+    $buttonText.prop('disabled', true);
+
     client.then((req) => {
+      let url = req.data.url;
       $buttonText.text("Сохранено");
 
       setTimeout(() => {
+        console.log(req.data);
+        if (url) {
+          window.location.href = url;
+        }
+
         $buttonText.text("");
       }, 2000)
     }).catch((e) => {
       $buttonText.text("Ошибка");
+      $buttonText.prop('disabled', false);
 
       setTimeout(() => {
         $buttonText.text("");

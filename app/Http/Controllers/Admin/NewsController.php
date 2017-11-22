@@ -14,9 +14,14 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $news = NewModel::all();
+        if ($request->has('q')) {
+            $news = NewModel::search($request->get('q'));
+        } else {
+            $news = NewModel::query();
+        }
+        $news = $news->get();
         return view('admin.news.index', compact('news'));
     }
 
@@ -44,7 +49,7 @@ class NewsController extends Controller
 
         $new->tags()->sync($request->get('tags'));
 
-        return response()->json(['status' => 'Ok!']);
+        return response()->json(['status' => 'Ok!', 'url' => route('admin.news.index')]);
     }
 
     /**
@@ -89,7 +94,7 @@ class NewsController extends Controller
         print_r($request->all());
         print_r($news->tags);
 
-        return response()->json(['status' => 'Ok!']);
+        return response()->json(['status' => 'Ok!', 'url' => route('admin.news.edit', $news->id)]);
     }
 
     /**

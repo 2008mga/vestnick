@@ -11,6 +11,11 @@ class Tag extends Model
         'additional_color'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function news()
     {
         return $this->belongsToMany(NewModel::class, 'new_tags', 'tag_id');

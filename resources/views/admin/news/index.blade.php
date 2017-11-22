@@ -14,6 +14,16 @@
 
         <div class="card">
             <div class="card-block">
+                <form action="{{ route('admin.news.index') }}" method="get">
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="q" class="form-control" placeholder="Введите название, тег или автора новости" aria-describedby="basic-addon1">
+                        <button type="submit" class="input-group-addon" id="basic-addon1">Поиск</button>
+                    </div>
+
+                </form>
+
+
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
                         <thead>

@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class NewModel extends Model
 {
+    use Searchable;
+
     protected $table = 'news';
 
     protected $fillable = [
@@ -65,6 +68,16 @@ class NewModel extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->select(['email', 'id', 'name']);
     }
+
+    public function toSearchableArray()
+    {
+        $data = $this->with(['user', 'tags']);
+
+        return $data->get()->first()->toArray();
+
+    }
+
+
 }
