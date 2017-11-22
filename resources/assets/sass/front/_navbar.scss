@@ -1,0 +1,10 @@
+.navbar {
+  background-color: darken($white, 1%) !important;
+  .container {
+    border-bottom: 1px solid lighten($gray-dark, 70%);
+    padding: {
+      top: 15px;
+      bottom: 15px;
+    };
+  }
+}
