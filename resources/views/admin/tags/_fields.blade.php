@@ -9,6 +9,19 @@
             {{ isset($tag) ? 'readonly' : '' }}
         />
     </div>
+    <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
+        <input
+                type="text"
+                name="description"
+                class="form-control"
+                placeholder="Небольшое описание"
+                value="{{ form_old('description') }}"
+        />
+    </div>
+    <div class="form-group form-group-sm mt-3">
+        <input type="file" name="image" data-value="{{ asset(form_old('image') ? form_old('image') : '') }}">
+        <small class="d-block text-center mt-2 mb-2">Для обновления / добавления нажмите или перетащите на изображение </small>
+    </div>
     <div class="form-group">
         <div id="cp5" class="input-group colorpicker-component" title="Using format option">
             <input

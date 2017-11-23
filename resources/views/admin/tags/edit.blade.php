@@ -13,7 +13,7 @@
             <div class="col-12 col-md-4 offset-md-4">
                 <div class="card">
                     <div class="card-block">
-                        <form action="{{ route('admin.tags.update', $tag->id) }}" method="post">
+                        <form enctype="multipart/form-data" action="{{ route('admin.tags.update', $tag->id) }}" method="post">
                             {!! csrf_field() !!}
                             {!! method_field('PUT') !!}
                             @include('admin.tags._fields')

@@ -11,7 +11,7 @@
                 </li>
                 <li v-for="(tag, index) in tags" :key="index" class="nav-item">
                     <router-link
-                            :to="{name: 'tag', params: { id: index }}"
+                            :to="{name: 'tag', params: { id: tag.id }}"
                             class="nav-link"
                             active-class="active"
                     >{{ tag.name }}</router-link>
@@ -29,49 +29,20 @@
 </template>
 
 <script>
+    import { TagsResource } from '../resources'
+
     export default {
       name: 'tags_inline',
       data() {
         return {
-          'tags': [
-            {
-              'name': 'Cultural',
-              'additional_color': null
-            },
-            {
-              'name': 'Animals',
-              'additional_color': null
-            },
-            {
-              'name': 'City',
-              'additional_color': null
-            },
-            {
-              'name': 'Study',
-              'additional_color': null
-            },
-            {
-              'name': 'WOW',
-              'additional_color': null
-            },
-            {
-              'name': 'Peoples',
-              'additional_color': null
-            },
-            {
-              'name': 'Important',
-              'additional_color': null
-            },
-            {
-              'name': 'Dick',
-              'additional_color': null
-            },
-            {
-              'name': 'Big',
-              'additional_color': null
-            },
-          ]
+          'tags': [],
         }
+      },
+      mounted() {
+        TagsResource.getTags()
+          .then((req) => {
+            this.$set(this, 'tags', req.data);
+          })
       }
     }
 </script>

@@ -1,18 +1,21 @@
-import routes from './routes'
-import urlResolve from 'resolve-link'
 class Api {
   constructor() {
     this.apiLink = process.env.API_URL;
     this.client = Api.initClient();
-    this.routes = routes;
+    this.routes = this.initRoutes();
+    this.init = false;
   }
 
-  static baseUrl() {
-    return location.protocol + '//' + location.host;
+  static baseUrl() {;
+    return location.protocol + '//' + location.host + (location.port ? ':'+location.port: '') + '/';
   }
 
   static initClient() {
     return require('axios');
+  }
+
+  initRoutes() {
+    return require('./routes').default;
   }
 
   getClient() {
@@ -31,9 +34,6 @@ class Api {
   makeResponse(data) {
     let current = this.currentRoute;
     let client = this.getClient();
-
-    console.log(current);
-
     return client[current.method](current.url, data);
   }
 
@@ -50,7 +50,11 @@ class Api {
       });
     }
 
-    this.currentRoute.url = urlResolve(this.apiLink + this.currentRoute.url, Api.baseUrl() );
+    if (!this.init) {
+      this.currentRoute.url = this.apiLink + this.currentRoute.url;
+    }
+
+    this.init = true;
 
     return this;
   }
@@ -58,5 +62,5 @@ class Api {
 
 }
 
-const api = new Api();
+let api = new Api();
 export default api;

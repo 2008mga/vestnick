@@ -40,7 +40,12 @@ class TagsController extends Controller
     public function store(TagStoreRequest $request)
     {
         $tag = new Tag();
-        $tag->fill($request->all());
+        $tag->fill($request->except('image'));
+
+        if ($request->has('image')) {
+            $tag = $tag->uploadImage($request->file('image'));
+        }
+
         $tag->save();
 
         $request->session()->flash('success', 'Тег успешно создан');
@@ -66,8 +71,9 @@ class TagsController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function edit(Tag $tag)
+    public function edit($tag)
     {
+        $tag = Tag::findOrFail($tag);
         return view('admin.tags.edit', compact('tag'));
     }
 
@@ -79,9 +85,15 @@ class TagsController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(TagUpdateRequest $request, Tag $tag)
+    public function update(TagUpdateRequest $request, $tag)
     {
-        $tag->fill($request->all());
+        $tag = Tag::findOrFail($tag);
+        $tag->fill($request->except('image'));
+
+        if ($request->has('image')) {
+            $tag = $tag->uploadImage($request->file('image'));
+        }
+
         $tag->save();
 
         $request->session()->flash('success', 'Тег успешно обновлён');
@@ -96,8 +108,9 @@ class TagsController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function destroy(Request $request, Tag $tag)
+    public function destroy(Request $request, $tag)
     {
+        $tag = Tag::findOrFail($tag);
         $tag->delete();
 
         $request->session()->flash('success', 'Тег удалён');
