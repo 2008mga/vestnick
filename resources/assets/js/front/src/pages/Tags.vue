@@ -7,23 +7,18 @@
                     <div
                         v-for="(tag, index) in tags"
                         :key="index"
-                        class="col-12 col-md-2 tags"
+                        class="col-12 col-sm-4 col-md-2 tags"
                     >
                         <router-link tag="div" :to="{name: 'tag', params: { id: tag.id }}">
                             <div class="card tag">
-                                <div class="card-image">
-                                    <img class="rounded-circle" :src="tag.image" alt="" width="100%">
+                                <div class="card-image text-center">
+                                    <img class="rounded-circle" :src="tag.image" alt="" width="70%">
                                 </div>
                                 <div class="card-block text-center">
                                     <div class="mb-2">
                                         <h4>
                                             {{ tag.name }}
                                         </h4>
-                                    </div>
-                                    <div>
-                                        <small>
-                                            {{ tag.news_count }}
-                                        </small>
                                     </div>
                                 </div>
                             </div>
