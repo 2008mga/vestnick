@@ -18,6 +18,10 @@ module.exports = {
       '/images': {
         target: 'http://vestnick.gumrf.local',
         changeOrigin: true,
+      },
+      '/static': {
+        target: 'http://vestnick.gumrf.local',
+        changeOrigin: true,
       }
     },
 
