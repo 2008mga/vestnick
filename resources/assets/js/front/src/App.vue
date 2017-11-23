@@ -4,7 +4,9 @@
       <navbar></navbar>
       <tags_inline></tags_inline>
     </div>
-    <router-view/>
+    <transition name="fade" mode="out-in">
+      <router-view :key="'main'"/>
+    </transition>
   </div>
 </template>
 
@@ -20,3 +22,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+
+</style>
