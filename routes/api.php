@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/tags/inline', 'Api\TagsController@inline');
 Route::get('/tags', 'Api\TagsController@index');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

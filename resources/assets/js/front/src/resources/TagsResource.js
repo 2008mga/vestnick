@@ -8,6 +8,10 @@ class TagsResource {
   getTags() {
     return this.api.getRoute('tags').prepareUrl().makeResponse();
   }
+
+  getInline() {
+    return this.api.getRoute('tags.inline').prepareUrl().makeResponse();
+  }
 }
 
 const resource = new TagsResource();

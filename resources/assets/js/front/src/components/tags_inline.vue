@@ -39,7 +39,7 @@
         }
       },
       mounted() {
-        TagsResource.getTags()
+        TagsResource.getInline()
           .then((req) => {
             this.$set(this, 'tags', req.data);
           })

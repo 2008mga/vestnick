@@ -50,10 +50,6 @@ class Api {
       });
     }
 
-    if (!this.init) {
-      this.currentRoute.url = this.apiLink + this.currentRoute.url;
-    }
-
     this.init = true;
 
     return this;

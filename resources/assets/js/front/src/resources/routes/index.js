@@ -1,12 +1,17 @@
 export default {
   'tag': {
-    url: '/tag/%id%',
+    url: 'api/tag/%id%',
     auth: false,
     method: 'get'
   },
   'tags': {
-    url: '/tags',
+    url: 'api/tags',
     auth: false,
     method: 'get'
-  }
+  },
+  'tags.inline': {
+    url: 'api/tags/inline',
+    auth: false,
+    method: 'get'
+  },
 }

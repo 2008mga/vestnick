@@ -13,4 +13,14 @@ class TagsController extends Controller
         $tags = Tag::all();
         return response()->json($tags);
     }
+
+    public function inline() {
+        $tags = Tag::query()
+            ->select(['id', 'name'])
+            ->limit(5)
+            ->get()
+            ->sortBy('news_count');
+
+        return response()->json($tags);
+    }
 }
