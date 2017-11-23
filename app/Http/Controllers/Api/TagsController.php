@@ -23,4 +23,10 @@ class TagsController extends Controller
 
         return response()->json($tags);
     }
+
+    public function find($id) {
+        $tag = Tag::with('news')->find($id);
+
+        return response()->json($tag);
+    }
 }

@@ -1,0 +1,19 @@
+.navbar-brand {
+  font-family: "Montserrat";
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.page-header {
+  text-transform: uppercase;
+  font-weight: 100;
+
+  &:after{
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: $gray-dark;
+    display: block;
+    margin-top: 5px;
+  }
+}

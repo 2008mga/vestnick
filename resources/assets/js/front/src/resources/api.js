@@ -1,9 +1,6 @@
 class Api {
   constructor() {
-    this.apiLink = process.env.API_URL;
-    this.client = Api.initClient();
-    this.routes = this.initRoutes();
-    this.init = false;
+    this.Reset();
   }
 
   static baseUrl() {;
@@ -14,7 +11,21 @@ class Api {
     return require('axios');
   }
 
-  initRoutes() {
+  Reset() {
+    this.currentRoute = null;
+    this.routes = Api.initRoutes();
+    this.apiLink = process.env.API_URL;
+    this.client = Api.initClient();
+    this.init = false;
+    this.url = null;
+
+    console.log(this, 'tyt');
+
+
+    return this;
+  }
+
+  static initRoutes() {
     return require('./routes').default;
   }
 
@@ -23,7 +34,9 @@ class Api {
   }
 
   getRoute(name) {
+    this.Reset();
     this.currentRoute = name in this.routes ? this.routes[name] : false;
+
     return this;
   }
 
@@ -34,7 +47,7 @@ class Api {
   makeResponse(data) {
     let current = this.currentRoute;
     let client = this.getClient();
-    return client[current.method](current.url, data);
+    return client[current.method](this.url, data);
   }
 
   prepareUrl(params) {
@@ -42,11 +55,13 @@ class Api {
       return this;
     }
 
-    if (params) {
-      Object.keys(params).map(function(key) {
-        let param = object[key];
+    this.url = this.currentRoute.url;
 
-        this.currentRoute.url = this.currentRoute.url.replace(new RegExp('%' + key + '%', 'gi'), param);
+    if (params) {
+      Object.keys(params).map((key) => {
+        let param = params[key];
+
+        this.url = this.currentRoute.url.replace(new RegExp('%' + key + '%', 'gi'), param);
       });
     }
 

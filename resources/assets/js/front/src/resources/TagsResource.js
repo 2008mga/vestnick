@@ -12,6 +12,10 @@ class TagsResource {
   getInline() {
     return this.api.getRoute('tags.inline').prepareUrl().makeResponse();
   }
+
+  getTag(id) {
+    return this.api.Reset().getRoute('tag').prepareUrl(id).makeResponse();
+  }
 }
 
 const resource = new TagsResource();

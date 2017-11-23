@@ -19,6 +19,8 @@ class CreateNewsTable extends Migration
             $table->string('full_name');
             $table->string('slug');
             $table->longText('text');
+            $table->string('image');
+            $table->text('description');
 
             $table->unsignedInteger('user_id');
 

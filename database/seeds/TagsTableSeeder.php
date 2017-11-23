@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+
 
 class TagsTableSeeder extends Seeder
 {
@@ -12,5 +14,17 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
+
+        foreach (range(1,100) as $index) {
+
+            \App\Tag::query()->create([
+                'name' => $faker->name,
+                'additional_color' => $faker->hexColor,
+                'image' => $faker->imageUrl(500,500),
+                'description' => $faker->paragraph,
+            ]);
+
+        }
     }
 }

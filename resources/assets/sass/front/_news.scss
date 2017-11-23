@@ -1,0 +1,17 @@
+.news {
+  .new {
+    &,
+    & > .main {
+      display: flex;
+    }
+
+
+    .left {
+      &, img {
+        max-width: 100px;
+      }
+    }
+
+
+  }
+}
