@@ -7,7 +7,7 @@
 
                 <div class="news">
                     <div class="row">
-                        <div class="col col-md-6 new mb-5" v-for="(post, index) in info.news" :key="index">
+                        <div class="col-12 col-md-6 new mb-5" v-for="(post, index) in news" :key="index">
                             <div class="main">
                                 <div class="left">
                                     <img :src="post.image">
@@ -21,43 +21,76 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="loading" v-if="this.loading">
+                    Loading
+                </div>
             </div>
         </div>
     </transition>
 </template>
 
 <script>
-    import { TagsResource } from '../resources'
+    import { TagsResource, NewsResource } from '../resources'
 
     export default {
       name: 'tag',
       data() {
         return {
           id: null,
-          info: {}
+          info: {},
+          news: [],
+          page: 1,
+          next: false,
+          loading: false
         }
       },
       watch: {
         '$route.params.id'() {
-          console.log(this.$route.params.id);
+          this.page = 1;
+          this.info = {};
+          this.news = [];
+          this.next = false;
           this.id = null;
           this.doStuff(this.$route.params);
+        },
+        'page'() {
+          this.doNews(this.id);
         }
       },
       methods: {
         doStuff(params) {
           TagsResource.getTag(params)
             .then((req) => {
-              console.log(req.data);
               if ('id' in req.data) {
-                this.$set(this, 'id', req.data.id);
                 this.$set(this, 'info', req.data);
+                this.doNews(req.data.id);
               }
             });
+        },
+        doNews(id) {
+          this.$set(this, 'loading', true);
+          NewsResource.getByTag({ id }, this.page)
+            .then((r) => {
+              this.$set(this, 'loading', false);
+              this.$set(this, 'id', id);
+              this.news = this.news.concat(r.data.data);
+              this.$set(this, 'page', r.data.current_page);
+              this.$set(this, 'next', !!r.data.next_page_url);
+            });
+        },
+        handleScroll() {
+          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.next && !this.loading) {
+            this.$set(this, 'page', this.page+1);
+          }
         }
       },
       created() {
-         this.doStuff(this.$route.params);
+        this.doStuff(this.$route.params);
+        window.addEventListener('scroll', this.handleScroll);
+      },
+      destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
       }
     }
 </script>

@@ -25,7 +25,7 @@ class TagsController extends Controller
     }
 
     public function find($id) {
-        $tag = Tag::with('news')->find($id);
+        $tag = Tag::find($id);
 
         return response()->json($tag);
     }

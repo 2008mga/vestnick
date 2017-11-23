@@ -1,3 +1,5 @@
+import routes from './routes';
+import axios from 'axios';
 class Api {
   constructor() {
     this.Reset();
@@ -7,15 +9,11 @@ class Api {
     return location.protocol + '//' + location.host + (location.port ? ':'+location.port: '') + '/';
   }
 
-  static initClient() {
-    return require('axios');
-  }
-
   Reset() {
     this.currentRoute = null;
-    this.routes = Api.initRoutes();
+    this.routes = routes;
     this.apiLink = process.env.API_URL;
-    this.client = Api.initClient();
+    this.client = axios;
     this.init = false;
     this.url = null;
 
@@ -23,10 +21,6 @@ class Api {
 
 
     return this;
-  }
-
-  static initRoutes() {
-    return require('./routes').default;
   }
 
   getClient() {
@@ -70,7 +64,10 @@ class Api {
     return this;
   }
 
-
+  paginate(page) {
+    this.url += '?page=' + page;
+    return this;
+  }
 }
 
 let api = new Api();

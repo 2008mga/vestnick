@@ -13,5 +13,10 @@ export default {
     url: '/api/tags/inline',
     auth: false,
     method: 'get'
+  },
+  'new.byTag': {
+    url: '/api/news/by/tag/%id%',
+    auth: false,
+    method: 'get'
   }
 }

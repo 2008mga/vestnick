@@ -17,6 +17,8 @@ Route::get('/tag/{id}', 'Api\TagsController@find');
 Route::get('/tags/inline', 'Api\TagsController@inline');
 Route::get('/tags', 'Api\TagsController@index');
 
+Route::get('/news/by/tag/{id}', 'Api\NewsController@byTag');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
