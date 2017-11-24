@@ -1,19 +1,38 @@
 <template>
-    <transition name="fade" mode="out-in">
-        <div class="tag" v-if="id">
+    <transition-group name="fade" mode="out-in">
+        <div class="tag" v-if="id" key="tag">
             <div class="container">
                 <h1 class="page-header mt-5 pl-0 d-inline-block">{{ info.name }}</h1>
                 <small class="d-block mb-5">{{ info.description }}</small>
 
                 <div class="news">
                     <div class="row">
-                        <div class="col-12 col-md-6 new mb-5" v-for="(post, index) in news" :key="index">
+                        <div class="col-12 col-md-6 new mb-5" key="new" v-for="(post, index) in news" :key="index">
                             <div class="main">
                                 <div class="left">
                                     <img :src="post.image">
                                 </div>
                                 <div class="right px-3">
                                     <h4>{{ post.short_name }}</h4>
+                                    <div>
+                                        <ul class="list-inline mb-3">
+                                            <router-link tag="li"
+                                                class="list-inline-item"
+                                                :class="{ active: id === tag.id }"
+                                                v-for="(tag, tagIndex) in post.tags"
+                                                :key="tagIndex"
+                                                :to="{ name: 'tag', params: { id: tag.id } }"
+                                                v-if="tagIndex < 8"
+                                            >
+                                                <small class="badge-pill bg-primary my-2">
+                                                    {{ tag.name }}
+                                                </small>
+                                            </router-link>
+                                            <!--<li class="list-inline-item" v-for="tag as post.tags">-->
+                                                <!--{{ tag.name }}-->
+                                            <!--</li>-->
+                                        </ul>
+                                    </div>
                                     <p>{{ post.description }}</p>
                                 </div>
                             </div>
@@ -25,9 +44,12 @@
                 <div class="loading" v-if="this.loading">
                     Loading
                 </div>
+                <div class="more" @click="incPage()" v-if="this.next && !this.loading">
+                    Загрузить ещё
+                </div>
             </div>
         </div>
-    </transition>
+    </transition-group>
 </template>
 
 <script>
@@ -79,10 +101,13 @@
               this.$set(this, 'next', !!r.data.next_page_url);
             });
         },
-        handleScroll() {
+        incPage() {
           if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.next && !this.loading) {
             this.$set(this, 'page', this.page+1);
           }
+        },
+        handleScroll() {
+          this.incPage();
         }
       },
       created() {

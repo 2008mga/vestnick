@@ -11,7 +11,7 @@ class NewsController extends Controller
     public function byTag($id)
     {
         $news = Tag::findOrFail($id)
-            ->news()
+            ->newsMini()
             ->simplePaginate(10);
 
         return response()->json($news);
