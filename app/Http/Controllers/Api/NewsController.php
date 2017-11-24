@@ -16,7 +16,12 @@ class NewsController extends Controller
             ->with(['tags' => function ($q) {
                 $q->select(['tags.id', 'tags.name']);
             }])
-            ->simplePaginate(10);
+            ->simplePaginate(8, [
+                'news.id',
+                'news.short_name',
+                'news.description',
+                'news.image',
+                ]);
 
         return response()->json($news);
     }
