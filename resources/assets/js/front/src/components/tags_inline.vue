@@ -36,10 +36,11 @@
       data() {
         return {
           'tags': [],
+          resource: new TagsResource()
         }
       },
       mounted() {
-        TagsResource.getInline()
+        this.resource.getInline()
           .then((req) => {
             this.$set(this, 'tags', req.data);
           })

@@ -2,7 +2,7 @@ import api from './api';
 
 class UsersResource {
   constructor() {
-    this.api = api;
+    this.api = new api();
   }
 
   getAnket(id) {
@@ -14,6 +14,5 @@ class UsersResource {
   }
 }
 
-const resource = new UsersResource();
 
-export default resource;
+export default UsersResource;

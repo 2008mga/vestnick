@@ -2,7 +2,7 @@ import api from './api';
 
 class TagsResource {
   constructor() {
-    this.api = api;
+    this.api = new api();
   }
 
   getTags() {
@@ -14,10 +14,9 @@ class TagsResource {
   }
 
   getTag(id) {
+    console.log('test');
     return this.api.getRoute('tag').prepareUrl(id).makeResponse().Reset();
   }
 }
 
-const resource = new TagsResource();
-
-export default resource;
+export default TagsResource;

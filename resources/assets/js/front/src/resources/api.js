@@ -37,7 +37,7 @@ class Api {
   makeResponse(data) {
     let current = this.currentRoute;
     let url = this.url;
-    this.response = axios[current.method](url, data);
+    this.response = axios.create()[current.method](url, data);
     return this;
   }
 
@@ -67,5 +67,4 @@ class Api {
   }
 }
 
-let api = new Api();
-export default api;
+export default Api;

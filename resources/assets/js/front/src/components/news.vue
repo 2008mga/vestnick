@@ -68,6 +68,7 @@
           loading: false,
           id: null,
           handle: false,
+          resource: new NewsResource()
         }
       },
       watch: {
@@ -80,7 +81,7 @@
           this.$set(this, 'type', type);
           this.$set(this, 'loading', true);
 
-          NewsResource['getBy' + type]({ id }, this.page)
+          this.resource['getBy' + type]({ id }, this.page)
             .then((r) => {
               this.$set(this, 'loading', false);
               this.$set(this, 'id', id);
@@ -106,22 +107,27 @@
         }
       },
       mounted() {
-        this.$root.$on('id::change', () => {
-          this.page = 1;
-          this.news = [];
-        });
+//        this.$root.$on('id::change', () => {
+//          this.page = 1;
+//          this.news = [];
+//        });
 
         this.$root.$on('news::init', (params) => {
           if (!this.handle) {
+            console.log('test222');
             this.$set(this, 'handle', true);
             this['by'+params.type](params.id);
           }
+
+          return true;
         });
       },
       created() {
         window.addEventListener('scroll', this.handleScroll);
       },
       destroyed() {
+        this.$root.$off('news::init');
+        this.$root.$off('id::change');
         window.removeEventListener('scroll', this.handleScroll);
       }
     }

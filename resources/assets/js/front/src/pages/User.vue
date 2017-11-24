@@ -39,12 +39,13 @@
       data() {
         return {
           id: null,
-          user: null
+          user: null,
+          resource: new UsersResource()
         }
       },
       methods: {
         doUser(id) {
-            UsersResource.getAnket({ id })
+            this.resource.getAnket({ id })
               .then((req) => {
                 this.$set(this, 'user', req.data);
                 this.$set(this, 'id', id);

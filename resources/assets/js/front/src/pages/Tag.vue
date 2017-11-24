@@ -23,10 +23,12 @@
           id: null,
           info: {},
           load: null,
+          resource: null
         }
       },
       watch: {
         '$route.params.id'() {
+          console.log('test');
           this.$set(this, 'load', false);
           this.$nextTick(function () {
             this.$root.$emit('id::change');
@@ -36,21 +38,26 @@
       },
       methods: {
         doStuff(params) {
-          TagsResource.getTag(params)
-            .then((req) => {
-              if ('id' in req.data) {
-                this.$set(this, 'load', true);
-                this.$set(this, 'info', req.data);
+          this.$set(this, 'resource', new TagsResource());
 
-                this.$nextTick(function () {
-                  this.$root.$emit('news::init', {
-                    type: 'Tag',
-                    id: this.info.id
+          this.$nextTick(function () {
+            this.resource.getTag(params)
+              .then((req) => {
+                if ('id' in req.data) {
+                  this.$set(this, 'load', true);
+                  this.$set(this, 'info', req.data);
+
+                  this.$nextTick(function () {
+                    this.$root.$emit('news::init', {
+                      type: 'Tag',
+                      id: this.info.id
+                    });
                   });
-                });
 
-              }
-            });
+                }
+              });
+          });
+
         }
       },
       mounted() {

@@ -2,7 +2,7 @@ import api from './api';
 
 class NewsResource {
   constructor() {
-    this.api = api;
+    this.api = new api();
   }
 
   getByTag(id, page) {
@@ -25,6 +25,4 @@ class NewsResource {
   }
 }
 
-const resource = new NewsResource();
-
-export default resource;
+export default NewsResource;
