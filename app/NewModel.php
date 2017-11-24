@@ -75,7 +75,7 @@ class NewModel extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class)->select(['email', 'id', 'name']);
+        return $this->belongsTo(User::class)->select(['email', 'id', 'name', 'avatar']);
     }
 
     public function toSearchableArray()

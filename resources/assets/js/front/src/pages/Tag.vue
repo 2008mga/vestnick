@@ -28,15 +28,24 @@
                                                     {{ tag.name }}
                                                 </small>
                                             </router-link>
-                                            <!--<li class="list-inline-item" v-for="tag as post.tags">-->
-                                                <!--{{ tag.name }}-->
-                                            <!--</li>-->
                                         </ul>
                                     </div>
                                     <p>{{ post.description }}</p>
                                 </div>
                             </div>
-                            <div class="info"></div>
+                            <div class="info">
+                                <div class="views">
+                                    {{ post.views }}
+                                </div>
+                                <div class="user text-center">
+                                    <div>
+                                        <img width="50" :src="post.user.avatar" class="rounded-circle" alt="">
+                                    </div>
+                                    <div class="px-3">
+                                        {{ post.user.name }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

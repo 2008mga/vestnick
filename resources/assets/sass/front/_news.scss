@@ -1,5 +1,7 @@
 .news {
   .new {
+    flex-flow: column;
+
     &,
     & > .main {
       display: flex;
@@ -12,6 +14,21 @@
       }
     }
 
+    .info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .views {
+        width: 100px;
+        display: block;
+        margin-right: auto;
+        text-align: center;
+      }
 
+      .user {
+        display: flex;
+        align-items: center;
+      }
+    }
   }
 }

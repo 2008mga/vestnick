@@ -6,6 +6,8 @@ use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
+
 
 class UserTableSeeder extends Seeder
 {
@@ -16,6 +18,21 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
+
+        foreach (range(1,100) as $index) {
+
+            \App\User::query()->create([
+                'name' => $faker->name,
+                'email' => $faker->safeEmail,
+                'avatar' => $faker->imageUrl(300,300),
+                'password' => $faker->password
+            ])->roles()->sync([
+                Role::findByName('admin')->id
+            ]);
+
+        }
+
         $tester = User::create([
            'email' => 'tester@example.com',
            'password' => 'password',

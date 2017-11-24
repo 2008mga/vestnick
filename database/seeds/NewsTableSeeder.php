@@ -14,7 +14,7 @@ class NewsTableSeeder extends Seeder
     {
         $faker = Faker::create();
         foreach (range(1,100) as $index) {
-            $user = \App\User::find(1);
+            $user = \App\User::find(rand(1,App\User::count()));
 
             $new = $user->news()->create([
                 'short_name' => $faker->name,
