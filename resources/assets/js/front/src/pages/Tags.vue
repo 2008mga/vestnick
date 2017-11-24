@@ -37,11 +37,12 @@
       name: 'tags',
       data() {
         return {
-          tags: null
+          tags: null,
+          resource: new TagsResource()
         }
       },
       mounted() {
-        TagsResource.getTags()
+        this.resource.getTags()
           .then((req) => {
             this.$set(this, 'tags', req.data);
           });
