@@ -5,6 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
+/**
+ * App\NewModel
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\NewLike[] $likes
+ * @property-read mixed $private_link
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @property-read \App\User $user
+ * @mixin \Eloquent
+ */
 class NewModel extends Model
 {
     use Searchable;

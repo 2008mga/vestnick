@@ -15,6 +15,7 @@ use Laravel\Scout\Searchable;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Role[] $roles
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\NewModel[] $news
  */
 class User extends Authenticatable
 {

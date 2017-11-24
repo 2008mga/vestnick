@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
 
+/**
+ * App\Tag
+ *
+ * @property-read mixed $news_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\NewModel[] $news
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\NewModel[] $newsMini
+ * @mixin \Eloquent
+ */
 class Tag extends Model
 {
     protected $fillable = [
@@ -31,7 +39,8 @@ class Tag extends Model
 
     public function newsMini()
     {
-        return $this->belongsToMany(NewModel::class, 'new_tags', 'tag_id', 'new_id');
+        return $this->belongsToMany(NewModel::class, 'new_tags', 'tag_id', 'new_id')
+            ->select(['news.id']);
     }
 
     public function getNewsCountAttribute() {
