@@ -41,6 +41,7 @@ class NewModel extends Model
 
     protected $appends = [
         'private_link',
+        'user_current'
     ];
 
     protected static function boot()
@@ -76,6 +77,15 @@ class NewModel extends Model
     public function user()
     {
         return $this->belongsTo(User::class)->select(['email', 'id', 'name', 'avatar']);
+    }
+
+    public function getUserCurrentAttribute()
+    {
+        if ($this->display_author) {
+            return $this->user;
+        }
+
+        return null;
     }
 
     public function toSearchableArray()

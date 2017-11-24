@@ -35,14 +35,13 @@
                             </div>
                             <div class="info">
                                 <div class="views">
-                                    {{ post.views }}
                                 </div>
-                                <div class="user text-center">
+                                <div class="user text-center" v-if="post.user_current">
                                     <div>
-                                        <img width="50" :src="post.user.avatar" class="rounded-circle" alt="">
+                                        <img width="50" :src="post.user_current.avatar" class="rounded-circle" alt="">
                                     </div>
                                     <div class="pl-3">
-                                        {{ post.user.name }}
+                                        {{ post.user_current.name }}
                                     </div>
                                 </div>
                             </div>
