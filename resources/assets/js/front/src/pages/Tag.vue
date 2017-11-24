@@ -12,7 +12,7 @@
                                 <div class="left">
                                     <img :src="post.image">
                                 </div>
-                                <div class="right px-3">
+                                <div class="right pl-3">
                                     <h4>{{ post.short_name }}</h4>
                                     <div>
                                         <ul class="list-inline mb-3">
@@ -41,7 +41,7 @@
                                     <div>
                                         <img width="50" :src="post.user.avatar" class="rounded-circle" alt="">
                                     </div>
-                                    <div class="px-3">
+                                    <div class="pl-3">
                                         {{ post.user.name }}
                                     </div>
                                 </div>
