@@ -6,15 +6,15 @@ class TagsResource {
   }
 
   getTags() {
-    return this.api.getRoute('tags').prepareUrl().makeResponse();
+    return this.api.getRoute('tags').prepareUrl().makeResponse().Reset();
   }
 
   getInline() {
-    return this.api.getRoute('tags.inline').prepareUrl().makeResponse();
+    return this.api.getRoute('tags.inline').prepareUrl().makeResponse().Reset();
   }
 
   getTag(id) {
-    return this.api.Reset().getRoute('tag').prepareUrl(id).makeResponse();
+    return this.api.getRoute('tag').prepareUrl(id).makeResponse().Reset();
   }
 }
 

@@ -26,7 +26,8 @@ class UserTableSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->safeEmail,
                 'avatar' => $faker->imageUrl(300,300),
-                'password' => $faker->password
+                'password' => $faker->password,
+                'about' => $faker->text
             ])->roles()->sync([
                 Role::findByName('admin')->id
             ]);

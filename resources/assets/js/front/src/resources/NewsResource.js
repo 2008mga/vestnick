@@ -10,7 +10,18 @@ class NewsResource {
       .getRoute('new.byTag')
       .prepareUrl(id)
       .paginate(page)
-      .makeResponse();
+      .makeResponse()
+      .Reset();
+  }
+
+  getByUser(id, page) {
+    console.log(page);
+    return this.api
+      .getRoute('new.byUser')
+      .prepareUrl(id)
+      .paginate(page)
+      .makeResponse()
+      .Reset();
   }
 }
 

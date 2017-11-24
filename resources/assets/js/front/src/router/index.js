@@ -4,8 +4,9 @@ import Home from '@/pages/Home'
 import New from '@/pages/New'
 import Tags from '@/pages/Tags'
 import Tag from '@/pages/Tag'
+import User from '@/pages/User'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -39,6 +40,12 @@ export default new Router({
       path: '/tag/:id/show',
       name: 'tag',
       component: Tag
+    },
+
+    {
+      path: '/user/:id',
+      name: 'user',
+      component: User
     }
   ]
 })

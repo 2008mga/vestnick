@@ -2,35 +2,31 @@ import routes from './routes';
 import axios from 'axios';
 class Api {
   constructor() {
-    this.Reset();
+    this.initDefault();
   }
 
-  static baseUrl() {;
-    return location.protocol + '//' + location.host + (location.port ? ':'+location.port: '') + '/';
+  initDefault() {
+    this.currentRoute = null;
+    this.routes = routes;
+    this.init = false;
+    this.load = false;
+    this.url = null;
+    this.response = false;
   }
 
   Reset() {
-    this.currentRoute = null;
-    this.routes = routes;
-    this.apiLink = process.env.API_URL;
-    this.client = axios;
-    this.init = false;
-    this.url = null;
+    if (!this.url) {
+      return;
+    }
 
-    console.log(this, 'tyt');
-
-
-    return this;
-  }
-
-  getClient() {
-    return this.client;
+    return this.response.then((req) => {;
+      this.initDefault();
+      return req;
+    });
   }
 
   getRoute(name) {
-    this.Reset();
     this.currentRoute = name in this.routes ? this.routes[name] : false;
-
     return this;
   }
 
@@ -40,15 +36,12 @@ class Api {
 
   makeResponse(data) {
     let current = this.currentRoute;
-    let client = this.getClient();
-    return client[current.method](this.url, data);
+    let url = this.url;
+    this.response = axios[current.method](url, data);
+    return this;
   }
 
   prepareUrl(params) {
-    if (!this.currentRoute) {
-      return this;
-    }
-
     this.url = this.currentRoute.url;
 
     if (params) {
@@ -57,6 +50,10 @@ class Api {
 
         this.url = this.currentRoute.url.replace(new RegExp('%' + key + '%', 'gi'), param);
       });
+    }
+
+    if (this.currentRoute.url === this.url) {
+      this.load = true;
     }
 
     this.init = true;

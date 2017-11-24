@@ -21,7 +21,7 @@ class NewsTableSeeder extends Seeder
                 'full_name' => $faker->shuffleString(),
                 'is_private' => $faker->boolean,
                 'display_author' => $faker->boolean,
-                'text' => $faker->text,
+                'text' => $faker->randomHtml(),
                 'image' => $faker->imageUrl(200, 500),
                 'description' => $faker->paragraph
             ]);

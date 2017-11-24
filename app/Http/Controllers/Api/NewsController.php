@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\NewModel;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +12,19 @@ class NewsController extends Controller
 {
     public function byTag($id)
     {
-        $news = Tag::findOrFail($id)
+        $news = $this->__prepare(Tag::class, $id);
+
+        return response()->json($news);
+    }
+
+    public function byUser($id) {
+        $news = $this->__prepare(User::class, $id);
+
+        return response()->json($news);
+    }
+
+    private function __prepare($class, $id) {
+        return $class::findOrFail($id)
             ->news()
             ->whereIsPrivate(false)
             ->with(['tags' => function ($q) {
@@ -25,8 +38,6 @@ class NewsController extends Controller
                 'news.user_id',
                 'news.views',
                 'news.display_author'
-                ]);
-
-        return response()->json($news);
+            ]);
     }
 }
