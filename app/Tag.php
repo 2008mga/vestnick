@@ -31,8 +31,7 @@ class Tag extends Model
 
     public function newsMini()
     {
-        return $this->belongsToMany(NewModel::class, 'new_tags', 'tag_id', 'new_id')
-            ->addSelect('short_name');
+        return $this->belongsToMany(NewModel::class, 'new_tags', 'tag_id', 'new_id');
     }
 
     public function getNewsCountAttribute() {
