@@ -10,7 +10,13 @@
                     >
                 </div>
                 <div class="bio pl-5">
-                    <h1 class="page-header d-inline-block">{{ user.name }}</h1>
+                    <h1 class="page-header d-inline-block">
+                        {{ user.name }}
+                        <small>
+                            <man-svg v-if="user.sex === 'man'"></man-svg>
+                            <woman-svg v-if="user.sex === 'woman'"></woman-svg>
+                        </small>
+                    </h1>
                     <small class="d-block">{{ user.about }}</small>
                 </div>
             </div>
@@ -24,9 +30,11 @@
 <script>
     import { UsersResource } from '../resources'
     import news from "@/components/news";
+    import manSvg from "@/components/svg/man.svg"
+    import womanSvg from "@/components/svg/woman.svg"
 
     export default {
-      components: {news},
+      components: {news, manSvg, womanSvg},
       name: 'user',
       watch: {
         '$route.params.id'() {

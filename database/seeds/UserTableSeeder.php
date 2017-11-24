@@ -20,14 +20,15 @@ class UserTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1,100) as $index) {
+        foreach (range(1,50) as $index) {
 
             \App\User::query()->create([
                 'name' => $faker->name,
                 'email' => $faker->safeEmail,
                 'avatar' => $faker->imageUrl(300,300),
                 'password' => $faker->password,
-                'about' => $faker->text
+                'about' => $faker->text,
+                'sex' => array_first($faker->randomElements(['man', 'woman']))
             ])->roles()->sync([
                 Role::findByName('admin')->id
             ]);

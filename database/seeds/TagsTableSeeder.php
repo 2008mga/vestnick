@@ -16,7 +16,7 @@ class TagsTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1,100) as $index) {
+        foreach (range(1,50) as $index) {
 
             \App\Tag::query()->create([
                 'name' => $faker->name,

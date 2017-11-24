@@ -26,7 +26,7 @@ class NewsTableSeeder extends Seeder
                 'description' => $faker->paragraph
             ]);
 
-            $new->tags()->sync(range(1,100));
+            $new->tags()->sync(range(1,50, rand(1, 10)));
         }
     }
 }

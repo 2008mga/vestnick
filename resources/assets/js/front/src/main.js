@@ -7,9 +7,8 @@ import '%/app.scss'
 import { Nav, Navbar, Button, Form, FormInput, Media } from 'bootstrap-vue/es/components';
 import VueProgressiveImage from 'vue-progressive-image'
 
+
 Vue.use(VueProgressiveImage)
-
-
 Vue.use(Nav);
 Vue.use(Navbar);
 Vue.use(Button);

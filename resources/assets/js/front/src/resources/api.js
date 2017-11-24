@@ -1,5 +1,6 @@
 import routes from './routes';
-import axios from 'axios';
+import axios from '../progress';
+import { loadProgressBar } from 'axios-progress-bar'
 class Api {
   constructor() {
     this.initDefault();
@@ -19,6 +20,7 @@ class Api {
       return;
     }
 
+
     return this.response.then((req) => {;
       this.initDefault();
       return req;
@@ -37,7 +39,7 @@ class Api {
   makeResponse(data) {
     let current = this.currentRoute;
     let url = this.url;
-    this.response = axios.create()[current.method](url, data);
+    this.response = axios[current.method](url, data);
     return this;
   }
 

@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 
 class NewsController extends Controller
 {
+    public function index() {
+        return response()->json(NewModel::all());
+    }
+
     public function byTag($id)
     {
         $news = $this->__prepare(Tag::class, $id);
