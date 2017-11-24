@@ -1,6 +1,5 @@
 import routes from './routes';
 import axios from '../progress';
-import { loadProgressBar } from 'axios-progress-bar'
 class Api {
   constructor() {
     this.initDefault();
