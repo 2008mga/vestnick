@@ -8,8 +8,9 @@
                     </div>
                     <div class="right pl-3">
                         <h4>{{ post.short_name }}</h4>
+
                         <div>
-                            <ul class="list-inline mb-3">
+                            <ul class="list-inline mb-1">
                                 <!--{{ post.tags }}-->
                                 <router-link tag="li"
                                              class="list-inline-item"
@@ -25,24 +26,24 @@
                                 </router-link>
                             </ul>
                         </div>
+                        <div class="info my-1">
+                            <router-link
+                                class="user px-1 py-1"
+                                v-if="post.user_current"
+                                :to="{ name: 'user', params: { id: post.user_current.id } }"
+                            >
+                                <div>
+                                    <img width="25" :src="post.user_current.avatar" class="rounded-circle" alt="">
+                                </div>
+                                <div class="pl-1">
+                                    {{ post.user_current.name }}
+                                </div>
+                            </router-link>
+                        </div>
                         <p>{{ post.description }}</p>
                     </div>
                 </div>
-                <div class="info">
-                    <div class="views">
-                    </div>
-                    <div class="user text-center" v-if="post.user_current">
-                        <div>
-                            <img width="50" :src="post.user_current.avatar" class="rounded-circle" alt="">
-                        </div>
-                        <router-link
-                                :to="{ name: 'user', params: { id: post.user_current.id } }"
-                                class="pl-3"
-                        >
-                            {{ post.user_current.name }}
-                        </router-link>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="loading" v-if="this.loading">

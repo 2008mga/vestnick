@@ -18,17 +18,13 @@
     .info {
       display: flex;
       align-items: center;
-      justify-content: center;
-      .views {
-        width: 100px;
-        display: block;
-        margin-right: auto;
-        text-align: center;
-      }
 
       .user {
         display: flex;
         align-items: center;
+        //background-color: lighten($gray, 65%);
+        font-size: .75rem;
+        color: $gray-dark;
       }
     }
   }
