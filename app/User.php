@@ -19,7 +19,7 @@ use Laravel\Scout\Searchable;
  */
 class User extends Authenticatable
 {
-    use Notifiable, HasRole, Searchable;
+    use Notifiable, HasRole;
 
     protected static $defaultAvatar;
 

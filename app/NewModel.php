@@ -16,7 +16,6 @@ use Laravel\Scout\Searchable;
  */
 class NewModel extends Model
 {
-    use Searchable;
 
     protected $table = 'news';
 
@@ -86,14 +85,6 @@ class NewModel extends Model
         }
 
         return null;
-    }
-
-    public function toSearchableArray()
-    {
-        $data = $this->with(['user', 'tags']);
-
-        return $data->get()->first()->toArray();
-
     }
 
 
