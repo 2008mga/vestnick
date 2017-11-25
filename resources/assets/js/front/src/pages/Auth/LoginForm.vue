@@ -6,6 +6,10 @@
                     <h1 class="page-header d-inline-block">
                         Войти на сайт
                     </h1>
+                    <div v-if="errors" class="p-3 alert-danger mb-2" @click="errors = false">
+                        {{ errors.message }}
+                        <span class="close">&times;</span>
+                    </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
                         <input
@@ -39,8 +43,6 @@
 <script>
     import { AuthResource } from '@/resources'
 
-    console.log(process.env, 'testest');
-
     export default {
       name: 'loginForm',
       data() {
@@ -66,7 +68,7 @@
               this.$router.replace({ name: 'home' });
             })
             .catch((e) => {
-              console.log(e);
+                this.$set(this, 'errors', e.response.data);
             })
         }
       }
