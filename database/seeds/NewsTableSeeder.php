@@ -13,16 +13,18 @@ class NewsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach (range(1,100) as $index) {
+        foreach (range(1,400) as $index) {
             $user = \App\User::find(rand(1,App\User::count()));
+
 
             $new = $user->news()->create([
                 'short_name' => $faker->name,
-                'full_name' => $faker->shuffleString(),
+                'full_name' => $faker->streetName,
                 'is_private' => $faker->boolean,
                 'display_author' => $faker->boolean,
-                'text' => $faker->randomHtml(),
+                'text' => $faker->paragraph(rand(100, 500)),
                 'image' => $faker->imageUrl(200, 500),
+                'cover' => $faker->imageUrl(960, 300),
                 'description' => $faker->paragraph
             ]);
 

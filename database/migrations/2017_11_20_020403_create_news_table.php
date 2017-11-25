@@ -20,6 +20,7 @@ class CreateNewsTable extends Migration
             $table->string('slug');
             $table->longText('text');
             $table->string('image');
+            $table->string('cover');
             $table->text('description');
 
             $table->unsignedInteger('user_id');

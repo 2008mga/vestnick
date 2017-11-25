@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('me', 'Api\MeController@me');
+});
 
 Route::get('/tag/{id}', 'Api\TagsController@find');
 Route::get('/tags/inline', 'Api\TagsController@inline');

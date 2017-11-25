@@ -12,6 +12,7 @@ class Api {
     this.load = false;
     this.url = null;
     this.response = false;
+    this.headers = {};
   }
 
   Reset() {
@@ -26,6 +27,14 @@ class Api {
     });
   }
 
+  Auth(token) {
+    Object.assign(this.headers, {
+      'Authorization': 'Bearer ' + token
+    });
+
+    return this;
+  }
+
   getRoute(name) {
     this.currentRoute = name in this.routes ? this.routes[name] : false;
     return this;
@@ -38,7 +47,10 @@ class Api {
   makeResponse(data) {
     let current = this.currentRoute;
     let url = this.url;
-    this.response = axios[current.method](url, data);
+    console.log(this.headers);
+    this.response = axios[current.method](url, data, {
+      headers: this.headers
+    });
     return this;
   }
 

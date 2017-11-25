@@ -7,6 +7,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Intervention\Image\Facades\Image;
+use Laravel\Passport\HasApiTokens;
 use Laravel\Scout\Searchable;
 
 /**
@@ -19,7 +20,7 @@ use Laravel\Scout\Searchable;
  */
 class User extends Authenticatable
 {
-    use Notifiable, HasRole;
+    use Notifiable, HasRole, HasApiTokens;
 
     protected static $defaultAvatar;
 

@@ -23,6 +23,10 @@ class NewsResource {
       .makeResponse()
       .Reset();
   }
+
+  getById(id) {
+    return this.api.getRoute('new').prepareUrl(id).makeResponse().Reset();
+  }
 }
 
 export default NewsResource;

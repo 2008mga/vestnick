@@ -7,8 +7,10 @@
                         <progressive-img width="100%" :src="post.image" />
                     </div>
                     <div class="right pl-3">
-                        <h4>{{ post.short_name }}</h4>
-
+                        <router-link
+                            tag="h4"
+                            :to="{ name: 'new', params: { id: post.id } }"
+                        >{{ post.short_name }}</router-link>
                         <div>
                             <ul class="list-inline mb-1">
                                 <!--{{ post.tags }}-->

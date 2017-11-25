@@ -5,10 +5,15 @@ import New from '@/pages/New'
 import Tags from '@/pages/Tags'
 import Tag from '@/pages/Tag'
 import User from '@/pages/User'
+import Login from '@/pages/Auth/LoginForm'
 
+import { store } from './../store';
+import VueCookie from 'vue-cookie';
+
+Vue.use(VueCookie);
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -25,7 +30,7 @@ export default new Router({
     },
 
     {
-      path: '/new',
+      path: '/new/:id',
       name: 'new',
       component: New
     },
@@ -46,6 +51,20 @@ export default new Router({
       path: '/user/:id',
       name: 'user',
       component: User
+    },
+
+    {
+      path: '/auth/signIn',
+      name: 'auth.signIn',
+      component: Login,
+      meta: {
+        middleware: [
+          'guest'
+        ],
+
+      }
     }
   ]
-})
+});
+
+export default router

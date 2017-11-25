@@ -24,9 +24,24 @@ export default {
     auth: false,
     method: 'get'
   },
+  'new': {
+    url: '/api/news/by/id/%id%',
+    auth: false,
+    method: 'get'
+  },
   'user': {
     url: '/api/user/%id%',
     auth: false,
     method: 'get'
-  }
+  },
+  'auth.signIn': {
+    url: '/api/oauth/token',
+    auth: false,
+    method: 'post'
+  },
+  'auth.me': {
+    url: '/api/me',
+    auth: true,
+    method: 'post'
+  },
 }
