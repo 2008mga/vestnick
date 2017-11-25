@@ -20,6 +20,14 @@ class AuthResource {
       .makeResponse()
       .Reset();
   }
+  signOut(token) {
+    return this.api
+      .getRoute('auth.signOut')
+      .prepareUrl()
+      .Auth(token)
+      .makeResponse()
+      .Reset();
+  }
 }
 
 export default AuthResource;

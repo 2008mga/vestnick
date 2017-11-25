@@ -80,12 +80,26 @@ new Vue({
   el: '#app',
   store,
   router,
+  data() {
+    return {
+      resource: new AuthResource()
+    }
+  },
   template: '<App/>',
   components: { App },
   mounted() {
     // this.$store.commit('makeSignOut');
     console.log(process.env);
-    this.$on('auth::logout');
+    this.$on('auth::logout', () => {
+      if (this.$store.getters.authCheck) {
+        this.resource
+          .signOut(this.$cookie.get('auth.accessToken'))
+          .then((req) => {
+            this.$store.commit('makeSignOut');
+            this.$router.replace({ name: 'home' });
+          });
+      }
+    });
   },
   destroy() {
     this.$off('auth::logout');

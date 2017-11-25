@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('me', 'Api\MeController@me');
+    Route::post('signOut', 'Api\MeController@signOut');
 });
 
 Route::get('/tag/{id}', 'Api\TagsController@find');

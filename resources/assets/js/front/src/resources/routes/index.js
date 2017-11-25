@@ -44,4 +44,9 @@ export default {
     auth: true,
     method: 'post'
   },
+  'auth.signOut': {
+    url: '/api/signOut',
+    auth: true,
+    method: 'post'
+  }
 }

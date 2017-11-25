@@ -12,7 +12,10 @@
                             size="sm"
                             variant="outline-success"
                         >
-                            <b-dropdown-item size="sm">Выход</b-dropdown-item>
+                            <b-dropdown-item
+                                size="sm"
+                                @click="SignOut()"
+                            >Выход</b-dropdown-item>
                         </b-dropdown>
                     </div>
                     <div class="d-block" v-else>
@@ -39,6 +42,11 @@ export default {
   },
   mounted() {
     console.log(this.authCheck);
+  },
+  methods: {
+    SignOut() {
+      this.$root.$emit('auth::logout')
+    }
   }
 }
 </script>

@@ -12,4 +12,16 @@ class MeController extends Controller
     {
         return response()->json(Auth::user());
     }
+
+    public function signOut(Request $request)
+    {
+        $request->user()->token()->revoke();
+        // Delete all session data and get a new
+        $json = [
+            'success' => true,
+            'code' => 200,
+            'message' => 'You are Logged out.',
+        ];
+        return response()->json($json, '200');
+    }
 }
