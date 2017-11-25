@@ -74,6 +74,7 @@ router.beforeEach((to, from, next) => {
 
 });
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -83,7 +84,10 @@ new Vue({
   components: { App },
   mounted() {
     // this.$store.commit('makeSignOut');
+    console.log(process.env);
+    this.$on('auth::logout');
   },
   destroy() {
+    this.$off('auth::logout');
   }
 });

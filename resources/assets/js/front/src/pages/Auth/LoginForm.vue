@@ -39,6 +39,8 @@
 <script>
     import { AuthResource } from '@/resources'
 
+    console.log(process.env, 'testest');
+
     export default {
       name: 'loginForm',
       data() {
@@ -61,7 +63,7 @@
             .signIn(this.credentials)
             .then((req) => {
               this.$store.commit('makeSignIn', req.data);
-              console.log(req.data);
+              this.$router.replace({ name: 'home' });
             })
             .catch((e) => {
               console.log(e);

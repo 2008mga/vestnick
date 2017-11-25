@@ -1,7 +1,11 @@
 'use strict';
-module.exports = {
+const path = require('path');
+const env = require('dotenv').config({ path: path.resolve(__dirname + '../../../.env.front') });
+const merge = require('webpack-merge');
+
+console.log(env);
+
+module.exports = merge({
   NODE_ENV: '"production"',
   API_URL: '"/api"',
-  CLIENT_ID: '2',
-  CLIENT_SECRET: '"wX1xjtK9niiXx2C6CBslFKEgEntmb2nR4YFTTm2E"'
-};
+}, env.parsed);
