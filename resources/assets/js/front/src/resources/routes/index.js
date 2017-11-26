@@ -29,6 +29,11 @@ export default {
     auth: false,
     method: 'get'
   },
+  'new.comment': {
+    url: '/api/new/comment/%id%',
+    auth: true,
+    method: 'post'
+  },
   'user': {
     url: '/api/user/%id%',
     auth: false,

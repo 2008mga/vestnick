@@ -4,10 +4,10 @@
             <div class="container">
                 <a class="navbar-brand d-flex flex-column mx-auto" href="#">
                     <h2>Vestnic</h2>
-                    <div class="d-block" v-if="authCheck">
+                    <div class="d-block" v-if="$root.authCheck">
                         <b-dropdown
                             id="ddown1"
-                            :text="authUser.username"
+                            :text="$root.authUser.username"
                             class="m-md-2"
                             size="sm"
                             variant="outline-success"
@@ -30,18 +30,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'navbar',
-  computed: {
-    ...mapGetters([
-      'authCheck',
-      'authUser'
-    ])
-  },
   mounted() {
-    console.log(this.authCheck);
+    console.log(this.$root.authCheck, 'isAuth');
   },
   methods: {
     SignOut() {

@@ -53,6 +53,11 @@ class NewModel extends Model
         parent::boot();
     }
 
+    public function comments()
+    {
+        return $this->hasMany(NewComment::class, 'new_id');
+    }
+
     public function getPrivateLinkAttribute()
     {
         return route('new.private', $this->slug);

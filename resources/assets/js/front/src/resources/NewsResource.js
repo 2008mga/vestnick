@@ -27,6 +27,15 @@ class NewsResource {
   getById(id) {
     return this.api.getRoute('new').prepareUrl(id).makeResponse().Reset();
   }
+
+  sendComment(id, comment, token) {
+    return this.api
+      .getRoute('new.comment')
+      .prepareUrl(id)
+      .Auth(token)
+      .makeResponse({ comment })
+      .Reset();
+  }
 }
 
 export default NewsResource;

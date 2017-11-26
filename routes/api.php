@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('me', 'Api\MeController@me');
     Route::post('signOut', 'Api\MeController@signOut');
+    Route::post('/new/comment/{id}', 'Api\NewsController@comment');
 });
 
 Route::get('/tag/{id}', 'Api\TagsController@find');
@@ -23,5 +24,6 @@ Route::get('/tags', 'Api\TagsController@index');
 
 Route::get('/news', 'Api\NewsController@index');
 Route::get('/news/by/tag/{id}', 'Api\NewsController@byTag');
+Route::get('/news/by/id/{id}', 'Api\NewsController@byId');
 Route::get('/news/by/user/{id}', 'Api\NewsController@byUser');
 Route::get('/user/{id}', 'Api\UsersController@anket');

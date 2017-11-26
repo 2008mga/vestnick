@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\CommentStoreRequest;
 use App\NewModel;
 use App\Tag;
 use App\User;
@@ -51,10 +52,28 @@ class NewsController extends Controller
     {
         $new = NewModel::query()
             ->where('is_private', false)
-            ->with(['tags'])
+            ->with(['tags', 'comments'])
             ->findOrFail($id);
 
         return response()->json($new);
+    }
+
+    public function comment(CommentStoreRequest $request, $id)
+    {
+        NewModel::findOrFail($id);
+
+        $user = \Auth::user();
+        $comment = $user->comments()->make([
+            'new_id' => $id,
+            'text' => $request->comment
+        ]);
+
+        $comment->save();
+
+        return response()->json([
+            'success' => true,
+            'comment' => $comment->toArray()
+        ]);
     }
 
     private function __prepare($class, $id)

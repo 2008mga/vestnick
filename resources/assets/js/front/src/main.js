@@ -9,6 +9,7 @@ import VueProgressiveImage from 'vue-progressive-image'
 import { store } from './store';
 import VueCookie from 'vue-cookie'
 import { AuthResource } from './resources'
+import { mapGetters } from 'vuex'
 
 Vue.use(VueCookie);
 Vue.use(VueProgressiveImage);
@@ -93,7 +94,7 @@ new Vue({
     this.$on('auth::logout', () => {
       if (this.$store.getters.authCheck) {
         this.resource
-          .signOut(this.$cookie.get('auth.accessToken'))
+          .signOut(this.authToken)
           .then((req) => {
             this.$store.commit('makeSignOut');
             this.$router.replace({ name: 'home' });
@@ -103,5 +104,14 @@ new Vue({
   },
   destroy() {
     this.$off('auth::logout');
-  }
+  },
+  computed: {
+    ...mapGetters([
+      'authCheck',
+      'authUser'
+    ]),
+    authToken() {
+      return this.$cookie.get('auth.accessToken');
+    }
+  },
 });
