@@ -6,6 +6,7 @@ import Tags from '@/pages/Tags'
 import Tag from '@/pages/Tag'
 import User from '@/pages/User'
 import Login from '@/pages/Auth/LoginForm'
+import Register from '@/pages/Auth/RegisterForm'
 
 import { store } from './../store';
 import VueCookie from 'vue-cookie';
@@ -60,8 +61,18 @@ const router = new Router({
       meta: {
         middleware: [
           'guest'
-        ],
+        ]
+      }
+    },
 
+    {
+      path: '/auth/signUp',
+      name: 'auth.signUp',
+      component: Register,
+      meta: {
+        middleware: [
+          'guest'
+        ]
       }
     }
   ]

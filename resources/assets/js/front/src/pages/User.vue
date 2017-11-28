@@ -1,6 +1,11 @@
 <template>
-    <div class="user my-5" v-if="id">
+    <div class="user" v-if="id">
         <div class="container">
+            <ol class="breadcrumb mt-2 mb-3">
+                <li class="breadcrumb-item">Пользователи</li>
+                <li class="breadcrumb-item active">{{ user.name }}</li>
+                <li class="breadcrumb-item">Просмотр</li>
+            </ol>
             <div class="info">
                 <div class="image">
                     <img

@@ -1,32 +1,41 @@
 <template>
-    <div>
-        <nav class="navbar navbar-toggleable-md navbar-light">
-            <div class="container">
-                <a class="navbar-brand d-flex flex-column mx-auto" href="#">
-                    <h2>Vestnic</h2>
-                    <div class="d-block" v-if="$root.authCheck">
-                        <b-dropdown
-                            id="ddown1"
-                            :text="$root.authUser.username"
-                            class="m-md-2"
-                            size="sm"
-                            variant="outline-success"
-                        >
-                            <b-dropdown-item
-                                size="sm"
-                                @click="SignOut()"
-                            >Выход</b-dropdown-item>
-                        </b-dropdown>
-                    </div>
-                    <div class="d-block" v-else>
-                        <router-link :to="{ name: 'auth.signIn' }">
-                            Войти
-                        </router-link>
-                    </div>
-                </a>
+    <nav class="navbar navbar-toggleable-md navbar-light">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <router-link
+                class="navbar-brand"
+                href="#"
+                :to="{ name: 'home' }"
+            >Navbar</router-link>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <router-link
+                        tag="li"
+                        active-class="active"
+                        :to="{ name: 'auth.signIn' }"
+                        v-if="!$root.authCheck"
+                        class="nav-item"
+                    >
+                        <a class="nav-link">Войти</a>
+                    </router-link>
+                    <router-link
+                        tag="li"
+                        active-class="active"
+                        :to="{ name: 'auth.signUp' }"
+                        v-if="!$root.authCheck"
+                        class="nav-item"
+                    >
+                        <a class="nav-link btn btn-outline-success">
+                            Создать
+                        </a>
+                    </router-link>
+                </ul>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </template>
 
 <script>

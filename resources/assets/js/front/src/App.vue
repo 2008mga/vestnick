@@ -1,9 +1,8 @@
 <template>
   <div id="app">
-    <div class="header">
-      <navbar></navbar>
-      <tags_inline></tags_inline>
-    </div>
+    <navbar></navbar>
+    <div></div>
+    <tags_inline></tags_inline>
     <transition name="fade" mode="out-in">
       <router-view :key="'main'"/>
     </transition>

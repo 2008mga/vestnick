@@ -1,6 +1,10 @@
 <template>
     <div class="new-post" v-if="id">
-        <div class="container mt-5 mb-5">
+        <div class="container mt-2 mb-5">
+            <ol class="breadcrumb mt-2 mb-2">
+                <li class="breadcrumb-item">Новости</li>
+                <li class="breadcrumb-item active">{{ info.short_name }}</li>
+            </ol>
             <div class="row">
                 <div class="col-md-3 col-12 text-center">
                     <img :src="info.image" alt="">

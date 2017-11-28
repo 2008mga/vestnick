@@ -2,7 +2,11 @@
     <transition name="fade" mode="out-in">
         <div class="tag" v-if="load">
             <div class="container">
-                <h1 class="page-header mt-5 pl-0 d-inline-block">{{ info.name }}</h1>
+                <ol class="breadcrumb mt-2 mb-0">
+                    <li class="breadcrumb-item"><router-link :to="{ name: 'tags' }">Теги</router-link></li>
+                    <li class="breadcrumb-item active">{{ info.name }}</li>
+                </ol>
+                <h1 class="page-header mt-2 pl-0 d-inline-block">{{ info.name }}</h1>
                 <small class="d-block mb-5">{{ info.description }}</small>
 
                 <news></news>

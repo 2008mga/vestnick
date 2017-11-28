@@ -1,0 +1,9 @@
+.auth-form {
+  padding: 15px;
+  .header {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 100;
+    color: lighten($gray-light, 20%);
+  }
+}

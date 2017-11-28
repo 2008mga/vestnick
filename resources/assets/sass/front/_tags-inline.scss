@@ -20,17 +20,28 @@
       font-size: .85rem;
       text-transform: uppercase;
 
+      &:after {
+        content: '';
+        display: block;
+        height: 2px;
+        background-color: transparent;
+        margin-top: 7px;
+        border-radius: 1rem;
+        margin-bottom: -1px;
+      }
+
+      &:hover {
+        &:after {
+          background-color: lighten($gray-dark, 70%);
+        }
+      }
+
+
       &.active {
         color: $gray-dark;
 
         &:after {
-          content: '';
-          display: block;
-          height: 2px;
           background-color: lighten($gray-dark, 50%);
-          margin-top: 7px;
-          border-radius: 1rem;
-          margin-bottom: -1px;
         }
       }
 
