@@ -11,6 +11,15 @@
       }
     }
 
+    cursor: pointer;
+
+    &.router-link-active {
+      cursor: auto !important;
+      .badge-pill {
+        background-color: darken($gray-lightest, 20%) !important;
+      }
+    }
+
     a {
       padding: {
         top: 10px;

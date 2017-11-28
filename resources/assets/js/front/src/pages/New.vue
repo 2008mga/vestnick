@@ -123,7 +123,7 @@
         sendComment() {
           this.send = true;
           this.resource
-            .sendComment({ id: this.id }, this.comment, this.$root.authToken)
+            .sendComment({ id: this.id }, this.comment, this.$root.$cookie.get('auth.accessToken'))
             .then((req) => {
                 this.send = false;
                 if (req.data.success) {

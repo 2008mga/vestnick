@@ -1,35 +1,38 @@
 <template>
-    <div class="login-form container mt-5">
-        <h3 class="d-inline-block">
-            Войти на сайт
-        </h3>
-        <div v-if="errors" class="p-3 alert-danger mb-2" @click="errors = false">
-            {{ errors.message }}
-            <span class="close">&times;</span>
-        </div>
-        <div class="form-group">
-            <label for="email">E-mail</label>
-            <input
-                type="email"
-                id="email"
-                class="form-control-sm form-control"
-                v-model="credentials.username"
-            />
-        </div>
-        <div class="form-group">
-            <label for="password">Пароль</label>
-            <input
-                type="password"
-                id="password"
-                class="form-control-sm form-control"
-                v-model="credentials.password"
-            />
-        </div>
-        <div class="form-group">
-            <button
-                class="btn btn-success btn-sm float-right"
-                @click="AuthAttempt()"
-            >Войти</button>
+    <div class="login-form container auth-form">
+        <div class="row">
+            <div class="auth-form col-12 col-md-6 offset-md-3">
+                <h3 class="header">Войти на сайт</h3>
+                <hr>
+                <div v-if="errors" class="p-3 alert-danger mb-2" @click="errors = false">
+                    {{ errors.message }}
+                    <span class="close">&times;</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        v-model="credentials.username"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input
+                        type="password"
+                        id="password"
+                        class="form-control"
+                        v-model="credentials.password"
+                    />
+                </div>
+                <div class="form-group">
+                    <button
+                        class="btn btn-success btn-sm float-right"
+                        @click="AuthAttempt()"
+                    >Войти</button>
+                </div>
+            </div>
         </div>
     </div>
 </template>

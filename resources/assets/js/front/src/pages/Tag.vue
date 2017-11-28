@@ -50,7 +50,6 @@
                 if ('id' in req.data) {
                   this.$set(this, 'load', true);
                   this.$set(this, 'info', req.data);
-
                   this.$nextTick(function () {
                     this.$root.$emit('news::init', {
                       type: 'Tag',

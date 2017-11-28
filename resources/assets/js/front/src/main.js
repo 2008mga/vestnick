@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '%/app.scss'
-import { Nav, Navbar, Button, Form, FormInput, Media } from 'bootstrap-vue/es/components';
+import { Nav, Navbar, Button, Form, FormInput, Media, Dropdown, Collapse } from 'bootstrap-vue/es/components';
 import VueProgressiveImage from 'vue-progressive-image'
 import { store } from './store';
 import VueCookie from 'vue-cookie'
@@ -19,6 +19,8 @@ Vue.use(Button);
 Vue.use(Form);
 Vue.use(FormInput);
 Vue.use(Media);
+Vue.use(Dropdown);
+Vue.use(Collapse);
 
 Vue.config.productionTip = false;
 
@@ -91,10 +93,10 @@ new Vue({
   mounted() {
     // this.$store.commit('makeSignOut');
     console.log(process.env);
-    this.$on('auth::logout', () => {
+    this.$on('auth::logout', (token) => {
       if (this.$store.getters.authCheck) {
         this.resource
-          .signOut(this.authToken)
+          .signOut(token)
           .then((req) => {
             this.$store.commit('makeSignOut');
             this.$router.replace({ name: 'home' });
@@ -109,9 +111,6 @@ new Vue({
     ...mapGetters([
       'authCheck',
       'authUser'
-    ]),
-    authToken() {
-      return this.$cookie.get('auth.accessToken');
-    }
+    ])
   },
 });

@@ -2,6 +2,15 @@
   .new {
     flex-flow: column;
 
+    &:hover {
+      background-color: #f7f7f79c;
+    }
+
+    .header {
+      font-size: 1.3rem;
+      color: darken($gray-lightest, 50%);
+    }
+
     &,
     & > .main {
       display: flex;

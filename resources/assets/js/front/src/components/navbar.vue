@@ -8,7 +8,7 @@
                 class="navbar-brand"
                 href="#"
                 :to="{ name: 'home' }"
-            >Navbar</router-link>
+            >Вестник</router-link>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
@@ -32,6 +32,23 @@
                             Создать
                         </a>
                     </router-link>
+                    <li class="nav-item" v-if="$root.authCheck">
+                        <b-dropdown
+                            text="Left align"
+                            variant="primary"
+                            size="sm"
+                            class="m-2"
+                            right
+                        >
+                            <template slot="button-content">
+                                {{ $root.authUser.name }}
+                            </template>
+                            <b-dropdown-item
+                                @click="SignOut()"
+                                href="#"
+                            >Выход</b-dropdown-item>
+                        </b-dropdown>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -46,7 +63,7 @@ export default {
   },
   methods: {
     SignOut() {
-      this.$root.$emit('auth::logout')
+      this.$root.$emit('auth::logout', this.$root.$cookie.get('auth.accessToken'))
     }
   }
 }

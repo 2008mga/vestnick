@@ -8,25 +8,13 @@
                     </div>
                     <div class="right pl-3">
                         <router-link
-                            tag="h4"
+                            class="header d-block"
                             :to="{ name: 'new', params: { id: post.id } }"
                         >{{ post.short_name }}</router-link>
                         <div>
-                            <ul class="list-inline mb-1">
-                                <!--{{ post.tags }}-->
-                                <router-link tag="li"
-                                             class="list-inline-item"
-                                             :class="{ active: id === tag.id }"
-                                             v-for="(tag, tagIndex) in post.tags"
-                                             :key="tagIndex"
-                                             :to="{ name: 'tag', params: { id: tag.id } }"
-                                             v-if="tagIndex < 8"
-                                >
-                                    <small class="badge-pill bg-primary my-2">
-                                        {{ tag.name }}
-                                    </small>
-                                </router-link>
-                            </ul>
+                            <tags
+                                :tags="post.tags"
+                            ></tags>
                         </div>
                         <div class="info my-1">
                             <router-link
@@ -59,8 +47,10 @@
 
 <script>
     import { NewsResource } from '../resources'
+    import Tags from "../components/tags.vue";
 
     export default {
+      components: {Tags},
       name: 'news',
       data() {
         return {
@@ -116,8 +106,9 @@
 //        });
 
         this.$root.$on('news::init', (params) => {
+
           if (!this.handle) {
-            console.log('test222');
+            this.$root.$emit('tags::init', { id: params.id });
             this.$set(this, 'handle', true);
             this['by'+params.type](params.id);
           }
