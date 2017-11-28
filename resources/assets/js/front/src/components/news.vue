@@ -4,7 +4,7 @@
             <div class="col-12 col-md-6 new mb-5" key="new" v-for="(post, index) in news" :key="index">
                 <div class="main">
                     <div class="left">
-                        <progressive-img width="100%" :src="post.image" />
+                        <img width="100%" :src="post.image" />
                     </div>
                     <div class="right pl-3">
                         <router-link

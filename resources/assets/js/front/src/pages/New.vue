@@ -30,21 +30,7 @@
                     <div class="info">
                         <small>{{ info.short_name }}</small>
                         <h1>{{ info.full_name }}</h1>
-                        <ul class="list-inline mb-1">
-                            <!--{{ post.tags }}-->
-                            <router-link tag="li"
-                                         class="list-inline-item"
-                                         :class="{ active: id === tag.id }"
-                                         v-for="(tag, tagIndex) in info.tags"
-                                         :key="tagIndex"
-                                         :to="{ name: 'tag', params: { id: tag.id } }"
-                                         v-if="tagIndex < 8"
-                            >
-                                <small class="badge-pill bg-primary my-2">
-                                    {{ tag.name }}
-                                </small>
-                            </router-link>
-                        </ul>
+                        <tags :tags="info.tags"></tags>
                     </div>
                     <div class="text" v-html="info.text"></div>
                 </div>
@@ -95,8 +81,10 @@
 
 <script>
     import { NewsResource } from '@/resources'
+    import Tags from "../components/tags.vue";
 
     export default {
+      components: {Tags},
       name: 'new',
       data() {
         return {

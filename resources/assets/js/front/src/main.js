@@ -92,7 +92,6 @@ new Vue({
   components: { App },
   mounted() {
     // this.$store.commit('makeSignOut');
-    console.log(process.env);
     this.$on('auth::logout', (token) => {
       if (this.$store.getters.authCheck) {
         this.resource
