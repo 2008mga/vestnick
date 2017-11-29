@@ -8,9 +8,10 @@
             <div class="row">
                 <div class="col-md-3 col-12 text-center">
                     <img :src="info.image" alt="">
-                    <div class="user mt-5" v-if="info.user">
+                    <hr>
+                    <div class="user mt-2" v-if="info.user">
                         <img width="100px" class="rounded-circle" :src="info.user.avatar" alt="">
-                        <div>
+                        <div class="mt-2">
                             <router-link
                                 :to="{ name: 'user', params: { id: info.user.id } }"
                             >
@@ -18,8 +19,8 @@
                             </router-link>
                         </div>
                     </div>
-
-                    <div class="stats mt-3">
+                    <hr>
+                    <div class="stats mt-2">
                         <div>
                             Просмотров
                         </div>
