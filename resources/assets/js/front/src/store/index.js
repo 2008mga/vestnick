@@ -21,7 +21,7 @@ export const store = new Vuex.Store({
       return {
         'username': state.auth.username,
         'avatar': state.auth.avatar,
-        'name': state.auth.name,
+        'name': state.auth.name
       }
     }
   },

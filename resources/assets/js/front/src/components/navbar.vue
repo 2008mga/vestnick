@@ -28,20 +28,20 @@
                         v-if="!$root.authCheck"
                         class="nav-item"
                     >
-                        <a class="nav-link btn btn-outline-success">
+                        <a class="nav-link btn btn-sm btn-outline-success">
                             Создать
                         </a>
                     </router-link>
                     <li class="nav-item" v-if="$root.authCheck">
                         <b-dropdown
                             text="Left align"
-                            variant="primary"
+                            variant="default"
                             size="sm"
                             class="m-2"
                             right
                         >
                             <template slot="button-content">
-                                {{ $root.authUser.name }}
+                                {{ $root.authUser.username }}
                             </template>
                             <b-dropdown-item
                                 @click="SignOut()"

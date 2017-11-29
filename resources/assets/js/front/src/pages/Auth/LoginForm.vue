@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <button
-                        class="btn btn-success btn-sm float-right"
+                        class="btn btn-outline-success float-right"
                         @click="AuthAttempt()"
                     >Войти</button>
                 </div>
