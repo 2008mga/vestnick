@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '%/app.scss'
-import { Nav, Navbar, Button, Form, FormInput, Media, Dropdown, Collapse } from 'bootstrap-vue/es/components';
+import { Nav, Navbar, Button, Form, FormInput, Media, Dropdown, Collapse, InputGroup } from 'bootstrap-vue/es/components';
 import VueProgressiveImage from 'vue-progressive-image'
 import { store } from './store';
 import VueCookie from 'vue-cookie'
@@ -21,7 +21,7 @@ Vue.use(FormInput);
 Vue.use(Media);
 Vue.use(Dropdown);
 Vue.use(Collapse);
-
+Vue.use(InputGroup);
 Vue.config.productionTip = false;
 
 function checkMiddleware(router, to, from, next) {

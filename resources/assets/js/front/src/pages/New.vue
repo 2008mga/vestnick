@@ -10,7 +10,13 @@
                     <img :src="info.image" alt="">
                     <hr>
                     <div class="user mt-2" v-if="info.user">
-                        <img width="100px" class="rounded-circle" :src="info.user.avatar" alt="">
+                        <img
+                            width="100px"
+                            class="rounded-circle"
+                            :src="info.user.avatar"
+                            alt=""
+                            v-if="info.user.avatar"
+                        >
                         <div class="mt-2">
                             <router-link
                                 :to="{ name: 'user', params: { id: info.user.id } }"
@@ -35,29 +41,24 @@
                     </div>
                     <div class="text" v-html="info.text"></div>
                 </div>
-                <hr class="col-12 col-md-12 mt-5 mb-0">
-                <div class="col-12 col-md-12 mt-5">
+                <div class="col-12 col-md-12 mt-2">
                     <div class="comments">
                         <div v-if="$root.authCheck">
-                            <div class="form-group">
-                                <label>Оставь свой комментарий</label>
-                                <textarea
-                                    name="text"
-                                    class="form-control form-control-sm"
-                                    v-model="comment"
-                                ></textarea>
-                            </div>
+                            <h4 class="title pt-2 pb-2 text-uppercase">Комментарии</h4>
 
-                            <button
-                                class="btn btn-primary btn-sm float-right"
-                                @click="sendComment()"
-                                :disabled="send"
-                            >
-                                Написать
-                            </button>
+                            <b-input-group :left="$root.authUser.name">
+                                <b-input-group-button slot="right">
+                                    <b-button
+                                        variant="info"
+                                        size="sm"
+                                        @click="sendComment()"
+                                    >Написать</b-button>
+                                </b-input-group-button>
+                                <b-form-input v-model="comment"></b-form-input>
+                            </b-input-group>
                             <small
-                                v-if="comment_error"
-                                class="float-right text-danger pr-2"
+                                    v-if="comment_error"
+                                    class="float-right text-danger pr-2"
                             >
                                 {{ comment_error }}
                             </small>
@@ -68,8 +69,19 @@
                             >Войдите чтобы написать комментарий</router-link>
                         </div>
 
+                        <hr>
+
                         <div class="list">
-                            <div v-for="(comment, commentIndex) in info.comments" :key="commentIndex">
+                            <div
+                                v-for="(comment, commentIndex) in info.comments"
+                                :key="commentIndex"
+                                class="p-3 bg-primary mb-2"
+                            >
+                                <small class="d-block text-muted">
+                                    {{ comment.user.name }}
+                                    /
+                                    {{ comment.created_at }}
+                                </small>
                                 {{ comment.text }}
                             </div>
                         </div>
@@ -114,6 +126,7 @@
           this.resource
             .sendComment({ id: this.id }, this.comment, this.$root.$cookie.get('auth.accessToken'))
             .then((req) => {
+                this.$set(this, 'comment_error', false);
                 this.send = false;
                 if (req.data.success) {
                   // append comment

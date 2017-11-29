@@ -52,7 +52,9 @@ class NewsController extends Controller
     {
         $new = NewModel::query()
             ->where('is_private', false)
-            ->with(['tags', 'comments'])
+            ->with(['tags', 'comments' => function ($q) {
+                $q->with('user');
+            }])
             ->findOrFail($id);
 
         return response()->json($new);
@@ -72,7 +74,7 @@ class NewsController extends Controller
 
         return response()->json([
             'success' => true,
-            'comment' => $comment->toArray()
+            'comment' => $comment->load(['user'])->toArray()
         ]);
     }
 
