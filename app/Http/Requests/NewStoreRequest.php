@@ -26,7 +26,7 @@ class NewStoreRequest extends FormRequest
         return [
             'short_name' => 'required',
             'full_name' => 'required',
-            'tags' => 'array',
+            'tags' => 'string',
             'display_author' => 'required|boolean',
             'is_private' => 'required|boolean',
             'text' => 'required'

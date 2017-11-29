@@ -59,7 +59,7 @@ class Tag extends Model
 
     public function dropImage()
     {
-        if ($this->image && public_path($this->image)) {
+        if ($this->image && file_exists(public_path($this->image))) {
             unlink(public_path($this->image));
         }
     }

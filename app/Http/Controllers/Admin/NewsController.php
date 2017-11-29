@@ -21,7 +21,7 @@ class NewsController extends Controller
         } else {
             $news = NewModel::query();
         }
-        $news = $news->get();
+        $news = $news->orderBy('id', true)->get();
         return view('admin.news.index', compact('news'));
     }
 
@@ -47,7 +47,13 @@ class NewsController extends Controller
             'tags'
         ]));
 
-        $new->tags()->sync($request->get('tags'));
+        if ($request->hasFile('image')) {
+            $new = $new->uploadImage($request->file('image'));
+            $new->save();
+        }
+
+
+        $new->tags()->sync(explode(',', $request->get('tags')));
 
         return response()->json(['status' => 'Ok!', 'url' => route('admin.news.index')]);
     }
@@ -71,8 +77,9 @@ class NewsController extends Controller
      * @internal param NewModel $new
      * @internal param int $id
      */
-    public function edit(NewModel $news)
+    public function edit($news)
     {
+        $news = NewModel::with('tags')->findOrFail($news);
         return view('admin.news.edit', compact('news'));
     }
 
@@ -84,15 +91,18 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(Request $request, NewModel $news)
+    public function update(Request $request, $news)
     {
+        $news = NewModel::findOrFail($news);
         $news->fill($request->except('tags'));
+
+        if ($request->hasFile('image')) {
+            $news = $news->uploadImage($request->file('image'));
+        }
+
         $news->save();
 
-        $news->tags()->sync($request->get('tags'));
-
-        print_r($request->all());
-        print_r($news->tags);
+        $news->tags()->sync(explode(',', $request->get('tags')));
 
         return response()->json(['status' => 'Ok!', 'url' => route('admin.news.edit', $news->id)]);
     }
@@ -104,8 +114,9 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function destroy(Request $request, NewModel $news)
+    public function destroy(Request $request, $news)
     {
+        $news = NewModel::findOrFail($news);
         $news->delete();
 
         $request->session()->flash('success', 'Новость удалена');

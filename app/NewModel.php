@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image;
 use Laravel\Scout\Searchable;
 
 /**
@@ -24,9 +26,11 @@ class NewModel extends Model
         'full_name',
         'is_private',
         'display_author',
+        'description',
         'slug',
         'views',
-        'text'
+        'text',
+        'image'
     ];
 
     protected $hidden = [
@@ -92,5 +96,28 @@ class NewModel extends Model
         return null;
     }
 
+    public function dropImage()
+    {
+        if ($this->image && file_exists(public_path($this->image))) {
+            unlink(public_path($this->image));
+        }
+    }
+    
+    public function uploadImage(UploadedFile $file) 
+    {
+        $ext = $file->extension();
+        $file = Image::make($file)->fit(200,500);
 
+        $filename = hash('sha256', $file->encode('data-url') . \Hash::make('laravel')) . '.' . $ext;
+        $publicPath = '/images/news/' . $filename;
+        $path = public_path('/images/news/' . $filename);
+
+        $this->dropImage();
+
+        $file->save($path);
+
+        $this->image = $publicPath;
+
+        return $this;
+    }
 }

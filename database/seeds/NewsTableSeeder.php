@@ -24,7 +24,6 @@ class NewsTableSeeder extends Seeder
                 'display_author' => $faker->boolean,
                 'text' => $faker->paragraph(rand(100, 500)),
                 'image' => $faker->imageUrl(200, 500),
-                'cover' => $faker->imageUrl(960, 300),
                 'description' => $faker->paragraph
             ]);
 

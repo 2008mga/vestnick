@@ -61,22 +61,43 @@ import { summernoteUploader } from  "./summernote.utils";
   $("#new_form").submit((e) => {
     e.preventDefault();
 
-    const data = {
+    const _data = {
       'short_name': $('input[name=short_name]').val(),
+      'description': $('input[name=description]').val(),
       'full_name': $('input[name=full_name]').val(),
       'tags': getSelectValues(document.querySelector('select[name="tags[]"]')),
       'display_author': $('input[name=display_author]').is(':checked') ? 1 : 0,
       'is_private': $('input[name=is_private]').is(':checked') ? 1 : 0,
       'text': $('#new_content').summernote('code')
     };
+
+    const formData = new FormData();
+
+    Object.keys(_data).map((objectKey, index) => {
+      let value = _data[objectKey];
+      formData.append(objectKey, value);
+    });
+
+    const img = $('input[name=image]')[0].files[0];
+
+    if (img) {
+      formData.append('image', img);
+    }
+
     const $target = $(e.target);
     const isUpdate = $($target).attr('data-method') === 'put';
     const url = $($target).attr('action');
 
-    const client = isUpdate ? axios.put(url, data) : axios.post(url, data);
+    if (isUpdate) {
+      formData.append("_method", 'PUT');
+    }
+
+    const client = isUpdate ? axios.post(url, formData) : axios.post(url, formData);
     const $buttonText = $target.find('button[type=submit]').find('small');
 
     $buttonText.prop('disabled', true);
+
+    console.log(formData);
 
     client.then((req) => {
       let url = req.data.url;
@@ -89,7 +110,7 @@ import { summernoteUploader } from  "./summernote.utils";
         }
 
         $buttonText.text("");
-      }, 2000)
+      }, 1000)
     }).catch((e) => {
       $buttonText.text("Ошибка");
       $buttonText.prop('disabled', false);

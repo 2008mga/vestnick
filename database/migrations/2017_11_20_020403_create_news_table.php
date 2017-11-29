@@ -20,14 +20,14 @@ class CreateNewsTable extends Migration
             $table->string('slug');
             $table->longText('text');
             $table->string('image');
-            $table->string('cover');
             $table->text('description');
 
             $table->unsignedInteger('user_id');
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
 
             $table->boolean('display_author')->default(true);
             $table->boolean('is_private')->default(false);

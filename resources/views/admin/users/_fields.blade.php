@@ -23,7 +23,7 @@
     />
 </div>
 
-<div class="col-12 col-md-12 form-group form-group-sm mt-3">
+<div class="col-12 col-md-12 form-group form-group-sm mt-3 user-ezdz">
     <input type="file" name="avatar" data-value="{{ asset(form_old('avatar') ? form_old('avatar') : config('app.default_avatar')) }}">
     <small class="d-block text-center mt-2 mb-2">Для обновления / добавления нажмите или перетащите на изображение ваш аватар</small>
 </div>

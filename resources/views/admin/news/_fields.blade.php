@@ -1,4 +1,15 @@
 {!! form_bind(isset($news) ? $news : null) !!}
+
+<div class="form-group form-group-sm mt-3 new-ezdz">
+    <input
+        type="file"
+        name="image"
+        data-value="{{ asset(form_old('image') ? form_old('image') : config('app.default_avatar')) }}"
+        width="100px"
+        height="250px"
+    >
+    <small class="d-block text-center mt-2 mb-2">Для обновления / добавления нажмите или перетащите на изображение. Размер : 200x500</small>
+</div>
 <div class="form-group">
     <label>Короткое название</label>
     <input
@@ -18,6 +29,17 @@
         value="{{ form_old('full_name') }}"
     />
 </div>
+
+<div class="form-group">
+    <label>Описание</label>
+    <input
+            type="text"
+            name="description"
+            class="form-control"
+            value="{{ form_old('description') }}"
+    />
+</div>
+
 
 {{--
     TODO: add tags

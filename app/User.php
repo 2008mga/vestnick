@@ -63,9 +63,11 @@ class User extends Authenticatable
 
     public function uploadAvatar(UploadedFile $avatar)
     {
+        $ext = $avatar->extension();
         $avatar = Image::make($avatar)->fit(300);
 
-        $filename = hash('sha256', $avatar->encode('data-url') . \Hash::make('laravel')) .'.png';
+
+        $filename = hash('sha256', $avatar->encode('data-url') . \Hash::make('laravel')) . '.' . $ext;
         $publicPath = '/images/users/' . $filename;
         $path = public_path('/images/users/' . $filename);
 
@@ -80,7 +82,7 @@ class User extends Authenticatable
 
     public function dropAvatar()
     {
-        if ($this->avatar && public_path($this->avatar) && $this->avatar != self::$defaultAvatar) {
+        if ($this->avatar && file_exists(public_path($this->avatar)) && $this->avatar != self::$defaultAvatar) {
             unlink(public_path($this->avatar));
         }
     }

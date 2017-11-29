@@ -90,8 +90,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function edit(User $user)
+    public function edit($user)
     {
+        $user = User::findOrFail($user);
         $roles = Role::all([
             'id',
             'name',
@@ -108,8 +109,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, $user)
     {
+        $user = User::findOrFail($user);
         $user->fill($request->except([
             'password',
             'avatar',
@@ -142,8 +144,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function destroy(Request $request, User $user)
+    public function destroy(Request $request, $user)
     {
+        $user = User::findOrFail($user);
         if (Auth::user()->id !== $user->id) {
             $user->delete();
         } else {
