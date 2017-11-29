@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{ asset('/static/admin/admin.css') }}">
+    <link rel="stylesheet" href="/static/admin/admin.css">
 </head>
 <body>
     @include('admin.layouts.navbar')
     @yield('content')
 
-    <script src="{{ asset('/static/admin/admin.js') . '?v=' . time() }}"></script>
+    <script src="/static/admin/admin.js"></script>
 </body>
 </html>
